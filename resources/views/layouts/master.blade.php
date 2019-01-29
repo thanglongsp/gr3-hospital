@@ -10,6 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker.css')}}"> 
+    <link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.min.css')}}">
 </head>
 <body> 
     @include('layouts.slide')
@@ -64,13 +66,7 @@
                 <input class="input" type="date"  >
             </div>
         </div>
-        <div  class="col-sm-8">
-            <div class="myDivResult">
-                <center>
-                    <p>Result</p>
-                </center>
-            </div>
-        </div>
+        @include('layouts.result')
     </div>
 </body>
 </html>
