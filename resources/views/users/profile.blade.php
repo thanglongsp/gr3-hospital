@@ -30,7 +30,7 @@
 <div class="container">
     <div class="row mt-12">
         <div class="col-sm-4">
-            <div class="w3-sidebar w3-bar-block w3-light-grey w3-card" style="width:200px; margin-left:-100px;">
+            <div class=" w3-bar-block w3-light-grey w3-card" style="width:200px; margin-left:-100px; height:300px;">
                 <h5 class="w3-bar-item" style="text-align: center; color: green;">Thanglongsp <span class="glyphicon glyphicon-refresh"></span></h5>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Thông tin cá nhân')">Thông tin cá nhân</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Hồ sơ bệnh án')">Hồ sơ bệnh án</button>
@@ -38,17 +38,49 @@
         </div>
         <div class="col-sm-8">
             <div style="margin-left:-200px">
-                <div class="w3-padding">Vertical Tab Example (sidebar)</div>
                 <div id="Thông tin cá nhân" class="w3-container city" style="display:none">
-                    <h2>London</h2>
-                    <p>London is the capital city of England.</p>
-                    <p>It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
-                </div>
+                    <table style="width:100%">
+                        <tr>
+                            <th>Name </th>
+                            <td>xxx<td>
+                        </tr> 
+                        <tr>
+                            <th>Gender </th>
+                            <td>xxx<td>
+                        </tr>
+                        <tr>
+                            <th>Phone number </th>
+                            <td>xxx<td>
+                        </tr>
+                        <tr>
+                            <th>Birth day </th>
+                            <td>xxx<td>
+                        </tr>
+                        <tr>
+                            <th>Email </th>
+                            <td>xxx<td>
+                        </tr>
+                    </table>
 
+                    <p> <a href="#" style="margin-left:90%; color: blue;"><u>Cập nhật</u></a>
+                </div>
                 <div id="Hồ sơ bệnh án" class="w3-container city" style="display:none">
-                    <h2>Paris</h2>
-                    <p>Paris is the capital of France.</p> 
-                    <p>The Paris area is one of the largest population centers in Europe, with more than 12 million inhabitants.</p>
+                    <div class="ex1">
+                        <h2>Ngày xxx</h2>
+                        <p>~~~</p> 
+                        <p>abc xyz.</p>
+                        <p> <a href="#" style="margin-left:90%; color: blue;"><u>chi tiết</u></a>
+
+                        <h2>Ngày xxx</h2>
+                        <p>~~~</p> 
+                        <p>abc xyz.</p>
+                        <p> <a href="#" style="margin-left:90%; color: blue;">chi tiết</a>
+
+                        <h2>Ngày xxx</h2>
+                        <p>~~~</p> 
+                        <p>abc xyz.</p>
+                        <p> <a href="#" style="margin-left:90%; color: blue;">chi tiết</a>
+                    </div>
                 </div>
             </div>    
         </div>
