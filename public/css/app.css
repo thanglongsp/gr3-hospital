@@ -64,3 +64,36 @@ div.ex1 {
   height: 300px;
   overflow: scroll;
 }
+
+.divLogin {
+  width:50%;
+  height:400px;
+  background:#d6dbdf;
+  border: 2px solid #978ea7;
+  border-radius: 2%;
+  margin-left: 25%;
+}
+.divLoginChild{
+  text-align: center;
+  width:100%;
+  height:30px;
+  background: #978ea7;
+  border-radius: 3%;
+}
+
+.divRegister {
+  width:60%;
+  height:400px;
+  background:#d6dbdf;
+  border: 2px solid #978ea7;
+  border-radius: 2%;
+  margin-left: 25%;
+  margin-top: 10%;
+}
+.divRegisterChild{
+  text-align: center;
+  width:100%;
+  height:30px;
+  background: #978ea7;
+  border-radius: 3%;
+}

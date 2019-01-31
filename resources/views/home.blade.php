@@ -55,3 +55,4 @@
         </div>
         @include('layouts.result')
     </div>            
+@endsection
