@@ -11,11 +11,14 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('home');
 })->name('home');
 
 Route::get('/users/profile', function(){
     return view('users.profile');
 })->name('users/profile');
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
 Auth::routes();
