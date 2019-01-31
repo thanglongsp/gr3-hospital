@@ -96,4 +96,25 @@ div.ex1 {
   height:30px;
   background: #978ea7;
   border-radius: 3%;
-}
+}	
+.modal-dialog {
+    width: 1000px;
+    background-color:#337AB7;
+  }
+ 
+.modal-header {
+    width: 1000px;
+    background-color: #337AB7;
+    padding:16px 16px;
+    color:#FFF;
+    border-bottom:2px dashed #337AB7;
+    text-align: center;
+ }
+
+ .modal-content{
+   width: 1000px;
+ }
+
+ .modal{
+   margin-left: -25%;
+ }

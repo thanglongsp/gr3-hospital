@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav style="position: fixed; top: 0px; background-color:white; width:100%;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ route('home')}}" >Home</a>
+      <a class="navbar-brand" href="{{ route('home')}}" ><span class="glyphicon glyphicon-home"></span> Home</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <!-- <ul class="nav navbar-nav">
@@ -16,9 +16,13 @@
         <li><a href="#">Page 3</a></li>
       </ul> -->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li><a href="{{ route('logout') }}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        @guest
+          <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        @else
+          <li><a href="{{ route('users/profile') }}"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}</a></li>
+          <li><a href="{{ route('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        @endguest
       </ul>
     </div>
   </div>
