@@ -20,7 +20,7 @@
           <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         @else
-          <li><a href="{{ route('users/profile') }}"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}</a></li>
+          <li><a href="{{ route('users.profile', Auth::user()->id) }}"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}</a></li>
           <li><a href="{{ route('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         @endguest
       </ul>
