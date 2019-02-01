@@ -22,7 +22,7 @@
 @include('layouts.background')
 <div class="container">
     <div class="fb-profile">
-        <img align="left" class="fb-image-profile" src="../images/long.jpg"/>
+        <img align="left" class="fb-image-profile" src="/images/long.jpg"/>
         <!-- <div class="fb-profile-text">
             <h1>Thanglongsp</h1>
         </div> -->
@@ -43,25 +43,36 @@
                 <div id="Thông tin cá nhân" class="w3-container city" style="display:none">
                     <table style="width:100%">
                         <tr>
-                            <th>Name </th>
+                            <th>Biệt danh  </th>
                             <td>{{ Auth::user()->name }}<td>
                         </tr> 
                         <tr>
-                            <th>Gender </th>
+                            <th>Họ tên đầy đủ  </th>
+                            <td>{{ Auth::user()->full_name }}<td>
+                        </tr>
+                        <tr>
+                            <th>Ngày sinh  </th>
+                            <td>{{ Auth::user()->birth_day }}<td>
+                        </tr> 
+                        <tr>
+                            <th>Địa chỉ hiện tại  </th>
+                            <td>{{ Auth::user()->address }}<td>
+                        </tr> 
+                        <tr>
+                            <th>Công việc  </th>
+                            <td>{{ Auth::user()->name }}<td>
+                        </tr> 
+                        <tr>
+                            <th>Giới tính  </th>
                             @if( Auth::user()->gender == 1 )
                             <td>Nam<td>
                             @else
                             <td>Nữ<td>
                             @endif
-
                         </tr>
                         <tr>
-                            <th>Phone number </th>
+                            <th>Số điện thoại  </th>
                             <td>{{ Auth::user()->phone_number }}<td>
-                        </tr>
-                        <tr>
-                            <th>Birth day </th>
-                            <td>{{ Auth::user()->birth_day }}<td>
                         </tr>
                         <tr>
                             <th>Email </th>
@@ -82,15 +93,33 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="container">
-                                        <form method="post" action="#" enctype="multipart/form-data">
+                                        <form method="post" action="{{ route('users.update_profile', Auth::user()->id) }}" enctype="multipart/form-data">
                                             @csrf
-                                            <input name="_method" type="hidden" value="PUT">     
+                                            <input name="_method" type="hidden" value="post">     
                                             <div class="row mt-5">
                                                 <div class="col-sm-9">
                                                     <div class="form-group row"> 
                                                         <label for="inputName" class="col-sm-2 col-form-label">Name :</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" name="inputName" placeholder="Họ tên" value="{{ Auth::user()->name }}">
+                                                            <input type="text" class="form-control" name="inputName" placeholder="Biệt danh" value="{{ Auth::user()->name }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row"> 
+                                                        <label for="full_name" class="col-sm-2 col-form-label">Full Name :</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" name="full_name" placeholder="Họ tên" value="{{ Auth::user()->full_name }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row"> 
+                                                        <label for="address" class="col-sm-2 col-form-label">Địa chỉ :</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" name="address" placeholder="Địa chỉ" value="{{ Auth::user()->address }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row"> 
+                                                        <label for="work" class="col-sm-2 col-form-label">Công việc :</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" name="work" value="{{ Auth::user()->work }}">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -129,15 +158,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="inputPassword" class="col-sm-2 col-form-label">Password :</label>
+                                                        <label for="new_password" class="col-sm-2 col-form-label">New password :</label>
                                                         <div class="col-sm-10">
-                                                            <input type="password" class="form-control" name="inputPassword" placeholder="Password">
+                                                            <input type="password" class="form-control" name="new_password" placeholder="Password">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="inputPassword" class="col-sm-2 col-form-label">Confirm password :</label>
+                                                        <label for="cof_new_password" class="col-sm-2 col-form-label">Confirm new-password :</label>
                                                         <div class="col-sm-10">
-                                                            <input type="password" class="form-control" name="inputPassword_confirmation" placeholder="Re-enter password">
+                                                            <input type="password" class="form-control" name="cof_new_password">
                                                         </div>
                                                     </div>
                                                     <br> 
