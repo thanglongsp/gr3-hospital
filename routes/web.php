@@ -28,3 +28,8 @@ Route::post('/users/{id}/update/profile',[
     'as'=>'users.update_profile',
     'uses'=>'UserController@updateUserProfile'
 ]);
+
+Route::post('/users/{id}/update/picture',[
+    'as'=>'users.update_picture',
+    'uses'=>'UserController@updateUserPicture'
+]);

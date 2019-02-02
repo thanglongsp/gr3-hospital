@@ -118,3 +118,8 @@ div.ex1 {
  .modal{
    margin-left: -25%;
  }
+
+ .modal-dialog {
+  width: 1000px;
+  background-color:#337AB7;
+}
