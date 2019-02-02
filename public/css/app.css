@@ -126,7 +126,7 @@ div.ex1 {
 
 /* forum */
 .divForum {
-  height:400px;
+  height:680px;
   background:#d6dbdf;
   border: 2px solid #978ea7;
   /* border-radius: 2%; */
@@ -140,18 +140,27 @@ div.ex1 {
 
 /* Post User */
 
-.divPostUser {
+.content {
   margin-top: 80px;
-  background:#d6dbdf;
+  background:#dbf308;
+  height: 600px;
+  overflow: scroll;
   /* border: 2px solid #978ea7; */
   /* border-radius: 2%; */
+}
+
+.divPostUser {
+  /* margin-top: 80px; */
+  background:#d6dbdf;
+  border: 2px solid #978ea7;
+  border-radius: 2%;
 }
 .divPostUserHeader{
   text-align: center;
   height:50px;
   width:100%;
   background: #f04c00;
-  /* border-radius: 3%; */
+  border-radius: 3%;
 }
 
 .divPostUserContent{
@@ -164,8 +173,8 @@ div.ex1 {
 
 .divPostUserFooter{
   text-align: left;
-  height:50px;
+  height:auto;
   width:100%;
-  background: #3e03a5;
+  background: #23f090;
   /* border-radius: 3%; */
 }
