@@ -11,13 +11,12 @@
 |
 */
 
+Auth::routes();
+
+// Home
 Route::get('/home', function () {
     return view('home');
 })->name('home'); 
-
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-
-Auth::routes();
 
 // User
 Route::get('/users/{id}/profile', function(){
@@ -33,3 +32,10 @@ Route::post('/users/{id}/update/picture',[
     'as'=>'users.update_picture',
     'uses'=>'UserController@updateUserPicture'
 ]);
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+// Forum
+Route::get('/forum', function(){
+    return view('forum');
+})->name('forum');

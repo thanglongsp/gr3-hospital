@@ -123,3 +123,49 @@ div.ex1 {
   width: 1000px;
   background-color:#337AB7;
 }
+
+/* forum */
+.divForum {
+  height:400px;
+  background:#d6dbdf;
+  border: 2px solid #978ea7;
+  /* border-radius: 2%; */
+}
+.divForumChild{
+  text-align: center;
+  height:50px;
+  background: #978ea7;
+  /* border-radius: 3%; */
+}
+
+/* Post User */
+
+.divPostUser {
+  margin-top: 80px;
+  background:#d6dbdf;
+  /* border: 2px solid #978ea7; */
+  /* border-radius: 2%; */
+}
+.divPostUserHeader{
+  text-align: center;
+  height:50px;
+  width:100%;
+  background: #f04c00;
+  /* border-radius: 3%; */
+}
+
+.divPostUserContent{
+  text-align: left;
+  height:auto;
+  width:100%;
+  background: #0aeb0a;
+  /* border-radius: 3%; */
+}
+
+.divPostUserFooter{
+  text-align: left;
+  height:50px;
+  width:100%;
+  background: #3e03a5;
+  /* border-radius: 3%; */
+}

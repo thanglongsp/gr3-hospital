@@ -14,6 +14,6 @@
     <script href="{{asset('js/app.js')}}"></script> 
 </head>
 <body> 
-    @yield('content')
+    @yield('content') 
 </body>
 </html>
