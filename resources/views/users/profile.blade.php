@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <script src="{{asset('js/app.js')}}"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -22,7 +22,7 @@
 @include('layouts.background')
 <div class="container">
     <div class="fb-profile">
-        <img align="left" class="fb-image-profile" src="/images/long.jpg"/>
+        <img align="left" class="fb-image-profile" src="{{asset('images/avatars/'. Auth::user()->avatar)}}"/>
         <!-- <div class="fb-profile-text">
             <h1>Thanglongsp</h1>
         </div> -->
@@ -33,7 +33,37 @@
     <div class="row mt-12">
         <div class="col-sm-4">
             <div class=" w3-bar-block w3-light-grey w3-card" style="width:200px; margin-left:-100px; height:300px;">
-                <h5 class="w3-bar-item" style="text-align: center; color: green;">Thanglongsp <span class="glyphicon glyphicon-refresh"></span></h5>
+                <h5 class="w3-bar-item" style="text-align: center; color: green;"> {{ Auth::user()->name }} <a href="#" data-toggle="modal" data-target="#myModalPicture"><span class="glyphicon glyphicon-picture"></a></span></h5>
+                <!-- Modal -->
+                <div class="modal fade" id="myModalPicture" role="dialog">
+                            <div class="modal-dialog">
+                            
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Cập nhật ảnh đại diện </h4>
+                                </div>
+                                <div class="modal-body">
+                                <div class="card">
+                                <form method="post" action="{{route('users.update_picture', Auth::user()->id)}}" enctype="multipart/form-data">
+                                @csrf
+                                    <input type="hidden" name="new_name" id="new_name" value="{{Auth::user()->avatar}}">
+                                    <img  style="width:200px;" id="img_avatar" class="card-img-top" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Card image cap" style="padding: 6px">
+                                    <div class="card-body">
+                                        <input accept="image/*" name="avatar" title="Đổi ảnh đại diện" type="file" id="avatar"  onchange="reupAvatar()">
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" type="submit">Save</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                                </form>
+                            </div>
+                            </div>
+                        </div
+                    <!-- end modal -->
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Thông tin cá nhân')">Thông tin cá nhân</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Hồ sơ bệnh án')">Hồ sơ bệnh án</button>
             </div>
@@ -216,19 +246,3 @@
 
 </body>
 </html>
-
-<script>
-    function openCity(evt, cityName) {
-    var i, x, tablinks;
-    x = document.getElementsByClassName("city");
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < x.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" w3-red", ""); 
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " w3-red";
-    }
-</script>
