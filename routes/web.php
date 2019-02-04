@@ -36,6 +36,12 @@ Route::post('/users/{id}/update/picture',[
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 // Forum
-Route::get('/forum', function(){
-    return view('forum');
-})->name('forum');
+Route::get('/forum',[
+    'as'=>'forum',
+    'uses'=>'ForumController@show'
+]);
+
+Route::post('/users/post', [
+    'as'=>'users.post',
+    'uses'=>'ForumController@post'
+]);

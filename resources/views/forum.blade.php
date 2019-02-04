@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @include('layouts.header')
 @section('content')
-<div class="col-sm-12" style="margin-top: 50px;">
+<div class="col-sm-12" style="margin-top: 50px; margin-left:60px;">
     <div class="col-sm-1"></div>
     <!-- Link left -->
     <div class="col-sm-2" style="background-color: red;">
@@ -43,24 +43,27 @@
         </div>
         <!-- end Đăng bài -->
         <div class="content">
+        @foreach($posts as $post)
             <!-- Bài viết -->
             <div class="divPostUser">
                 <div class="divPostUserHeader">
-                    <p>ccc</p>
+                    <p>{{ $post->title }}</p>
                 </div>
                 <div class="divPostUserContent">
-                    <p>ccc</p>
-                    <p>ccc</p>
-                    <p>ccc</p>
-                    <p>ccc</p>
-                </div>
+                @if($post->content != NULL)
+                    <p>{{ $post->content }}</p>
+                @endif
+                @if($post->picture != NULL)
+                    <img src="/images/forums/{{ $post->picture }}" style="width:200px;">
+                @endif      
+                </div>          
                 <div class="divPostUserFooter">
                     <a href="#"><span class="glyphicon glyphicon-heart" style="font-size:25px; color:red;"></span></a>
-                    <a data-toggle="collapse" data-parent="#accordion" href="#comment"><span class="glyphicon glyphicon-envelope" style="font-size:25px; color:blue;"></span></a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#comment{{ $post->id }}"><span class="glyphicon glyphicon-envelope" style="font-size:25px; color:blue;"></span></a>
                 </div>
 
                 <!-- Bình luận -->
-                <div id="comment" class="panel-collapse collapse">
+                <div id="comment{{ $post->id }}" class="panel-collapse collapse">
                     <div class="col-sm-2">
                         <a class="pr-3">
                             <img class="mr-3 img-responsive" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 50px; text-align: center; width: 50px;">
@@ -83,6 +86,7 @@
                 <!-- end bình luận -->
             </div>
             <!-- end Bài viết -->
+        @endforeach
         </div>
     </div>
     <!-- Link right -->
@@ -124,18 +128,24 @@
             </div>
             <div class="modal-body">
                 <div class="card">
-                    <form method="post" action="#" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('users.post') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="col-sm-12">                    
                         <div class="col-sm-8">
                             <center><p><strong>Bài viết</strong></p></center>
-                            <textarea rows="10" cols="60">
+                            <p>Tiếu đề : </p>
+                            <input type="text" name="title" style="width:513px;">
+                            <p>Nội dung : </p>
+                            <textarea rows="10" cols="60" name="content">
                             </textarea>
                         </div>
                         <div class="col-sm-4">
+                            <br>
                             <center><p>Ảnh đính kèm <i>(nếu có)</i></p></center>
-                            <img src="#">
-                            <input accept="image/*" name="#" title="thêm ảnh" type="file">                            
+                            <br>
+                            <input type="hidden" name="new_name" id="new_name" value="#">
+                            <img id="picture" src="/images/forums/default_image.jpg" style="width:200px;" >
+                            <input accept="image/*" name="post_image" title="thêm ảnh" type="file" onchange="displayPostImage()">                            
                         </div>
                     </div>
                     <div class="modal-footer">

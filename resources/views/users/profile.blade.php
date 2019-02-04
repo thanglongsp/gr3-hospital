@@ -22,7 +22,15 @@
 @include('layouts.background')
 <div class="container">
     <div class="fb-profile">
-        <img align="left" class="fb-image-profile" src="{{asset('images/avatars/'. Auth::user()->avatar)}}"/>
+        @if(Auth::user()->avatar != NULL)
+            <img  align="left" class="fb-image-profile" style="width:200px;" id="img_avatar" class="card-img-top" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Card image cap" style="padding: 6px">
+            @else
+                @if(Auth::user()->gender == 1)
+                    <img  align="left" class="fb-image-profile" style="width:200px;" id="img_avatar" class="card-img-top" src="/images/avatars/user_man.png" alt="Card image cap" style="padding: 6px">
+                @else
+                    <img  align="left" class="fb-image-profile" style="width:200px;" id="img_avatar" class="card-img-top" src="/images/avatars/user_girl.png" alt="Card image cap" style="padding: 6px">
+                @endif
+        @endif
         <!-- <div class="fb-profile-text">
             <h1>Thanglongsp</h1>
         </div> -->
@@ -39,7 +47,7 @@
                             <div class="modal-dialog">
                             
                             <!-- Modal content-->
-                            <div class="modal-content">
+                            <div class="modal-content"> 
                                 <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Cập nhật ảnh đại diện </h4>
@@ -49,7 +57,15 @@
                                 <form method="post" action="{{route('users.update_picture', Auth::user()->id)}}" enctype="multipart/form-data">
                                 @csrf
                                     <input type="hidden" name="new_name" id="new_name" value="{{Auth::user()->avatar}}">
+                                    @if(Auth::user()->avatar != NULL)
                                     <img  style="width:200px;" id="img_avatar" class="card-img-top" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Card image cap" style="padding: 6px">
+                                    @else
+                                        @if(Auth::user()->gender == 1)
+                                        <img  style="width:200px;" id="img_avatar" class="card-img-top" src="/images/avatars/user_man.png" alt="Card image cap" style="padding: 6px">
+                                        @else
+                                        <img  style="width:200px;" id="img_avatar" class="card-img-top" src="/images/avatars/user_girl.png" alt="Card image cap" style="padding: 6px">
+                                        @endif
+                                    @endif
                                     <div class="card-body">
                                         <input accept="image/*" name="avatar" title="Đổi ảnh đại diện" type="file" id="avatar"  onchange="reupAvatar()">
                                     </div>
@@ -206,7 +222,7 @@
                                                                 Save
                                                             </button>
                                                         </div>
-                                                    </div>
+                                                    </div> 
                                                 </div>
                                             </div>
                                         </form>
