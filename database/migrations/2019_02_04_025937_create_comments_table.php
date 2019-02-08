@@ -22,7 +22,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('post_id');            
             $table->foreign('post_id')
                 ->references('id')
-                ->on('users');
+                ->on('posts');
             $table->string('parent_id');
             $table->text('content')->nullable();
             $table->string('picture')->nullable();

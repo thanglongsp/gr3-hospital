@@ -22,9 +22,20 @@ class User extends Authenticatable
     /**
      * The attributes that should be hidden for arrays.
      *
-     * @var array
+     * @var array 
      */
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
+    
 }

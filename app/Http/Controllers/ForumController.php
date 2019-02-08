@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Comment;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class ForumController extends Controller
@@ -22,7 +24,13 @@ class ForumController extends Controller
     }
 
     public function show(){
+        // $cmt = Comment::all();
+        // dd($cmt);
         $posts = Post::all();
-        return view('forum', compact('posts'));
+        $comments = Comment::all();
+
+        // $test = $comments->user();
+        dd($comments);
+        return view('forum', compact('posts', 'comments'));
     }
 }

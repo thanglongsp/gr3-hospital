@@ -64,24 +64,65 @@
 
                 <!-- Bình luận -->
                 <div id="comment{{ $post->id }}" class="panel-collapse collapse">
+                    @foreach($comments as $cmt)
+                        @if($cmt->post_id == $post->id )
+                            <div>
+                                <p>{{ $cmt->content }}</p>
+                            </div>
+                        @endif
+                    @endforeach
                     <div class="col-sm-2">
                         <a class="pr-3">
                             <img class="mr-3 img-responsive" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 50px; text-align: center; width: 50px;">
                         </a>
                     </div>
-                    <form action="#" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('post_comment', [Auth::user()->id, $post->id ]) }}" method="post" enctype="multipart/form-data">
                     @csrf
+                        <input type="hidden" value="0" name="parent_id">
                         <div class="col-sm-7">
-                            <input type="text" style="margin-top:10px; margin-left:-45px;" placeholder="Bình luận ... ">
+                            <input type="text" style="margin-top:10px; margin-left:-45px;" name="content" placeholder="Bình luận ... ">
                         </div>
                         <div class="col-sm-2" style="margin-left:-50px;">
-                            <a href="#"><span style="margin-top:10px; font-size: 25px;" class="glyphicon glyphicon-picture"></span></a>
+                            <a href="#" data-toggle="modal" data-target="#picture_comment_{{ $post->id }}" ><span style="margin-top:10px; font-size: 25px;" class="glyphicon glyphicon-picture"></span>                            </a>
                             <a href="#"><span style="margin-top:10px; font-size: 25px;" class="glyphicon glyphicon-camera"></span></a>
                         </div>
+                        <!-- Modal post or catch picture-->
+                        <div class="modal fade" id="picture_comment_{{ $post->id }}" role="dialog">
+                            <div class="modal-dialog">
+                            <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Đăng bài </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card">
+                                            <div class="col-sm-12">                    
+                                                <div class="col-sm-8">
+                                                <center><p>Chụp ảnh ? <i>(nếu muốn)</i></p></center>                                                    
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <br>
+                                                    <center><p>Ảnh đính kèm <i>(nếu có)</i></p></center>
+                                                    <br>
+                                                    <input type="hidden" name="new_name_comment{{ $post->id }}" id="new_name_comment{{ $post->id }}" value="#">
+                                                    <img id="picture_comment{{ $post->id }}" src="/images/forums/default_image.jpg" style="width:200px;" >
+                                                    <input accept="image/*" id="{{ $post->id }}" name="file_comment{{ $post->id }}" title="thêm ảnh" type="file" onchange="displayCommentImage(this.id)">                            
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end modal -->
                         <div class="col-sm-1">
                             <button class="btn btn-primary" type="submit" style="margin-top:10px; margin-left:-30px;">Bình luận</button>
                         </div>
-                    </form>
+                    </form>                                     
                 </div>
                 <!-- end bình luận -->
             </div>
