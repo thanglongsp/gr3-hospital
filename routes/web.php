@@ -45,3 +45,14 @@ Route::post('/users/post', [
     'as'=>'users.post',
     'uses'=>'ForumController@post'
 ]);
+
+// Comments
+Route::get('test', [
+    'as'=>'test',
+    'uses'=>'CommentController@getComment'
+]);
+
+Route::post('/users/{id}/comment/post/{post_id}',[
+    'as'=>'post_comment',
+    'uses'=>'CommentController@postComment'
+]);
