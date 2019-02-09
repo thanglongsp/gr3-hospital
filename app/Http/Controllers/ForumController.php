@@ -30,7 +30,7 @@ class ForumController extends Controller
         $comments = Comment::all();
 
         // $test = $comments->user();
-        dd($comments);
+        // dd($posts->user['name']);
         return view('forum', compact('posts', 'comments'));
     }
 }
