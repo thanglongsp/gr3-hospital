@@ -70,3 +70,55 @@ function displayCommentImage(clicked_id) {
         preview.src = "";
     }
 }
+
+// Lấy ảnh từ cam máy tính.
+function takePicture(clicked_value){
+    //alert(clicked_value);
+    if(clicked_value == 'comment'){
+        var player = document.getElementById('player');
+        var canvas = document.getElementById('canvasComment');
+        var context = canvas.getContext('2d');
+        var captureButton = document.getElementById('capture');
+        var constraints = {
+            video: true,
+        };
+        captureButton.addEventListener('click', () => {
+            // Draw the video frame to the canvas.
+            context.drawImage(player, 0, 0, canvas.width, canvas.height);
+            var img = new Image();
+            img.src = canvas.toDataURL("image/jpeg");
+
+            var xyz = document.getElementsByName("srcImage"); 
+            for(i = 0; i < xyz.length; i++ )
+                xyz[i].value = img.src;
+            //alert(img.src);
+        });
+        // Attach the video stream to the video element and autoplay.
+        navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+            player.srcObject = stream;
+        });
+    }else{
+        var player = document.getElementById('player');
+        var canvas = document.getElementById('canvasReply'+clicked_value);
+        //alert(canvas);
+        var context = canvas.getContext('2d');
+        var captureButton = document.getElementById('capture');
+        var constraints = {
+            video: true,
+        };
+        captureButton.addEventListener('click', () => {
+            // Draw the video frame to the canvas.
+            context.drawImage(player, 0, 0, canvas.width, canvas.height);
+            var img = new Image();
+            img.src = canvas.toDataURL("image/jpeg");
+            
+            var xyz = document.getElementsByName("srcImage"); 
+            for(i = 0; i < xyz.length; i++ )
+                xyz[i].value = img.src;
+        });
+        // Attach the video stream to the video element and autoplay.
+        navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+            player.srcObject = stream;
+        });
+    }
+};
