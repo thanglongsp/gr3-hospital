@@ -153,14 +153,14 @@ div.ex1 {
   /* margin-top: 80px; */
   background:#d6dbdf;
   border: 2px solid #978ea7;
-  border-radius: 2%;
+  border-radius: 1%;
 }
 .divPostUserHeader{
   text-align: center;
   height:50px;
   width:100%;
   background: #f04c00;
-  border-radius: 3%;
+  border-radius: 2%;
 }
 
 .divPostUserContent{

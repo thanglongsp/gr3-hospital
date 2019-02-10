@@ -24,13 +24,9 @@ class ForumController extends Controller
     }
 
     public function show(){
-        // $cmt = Comment::all();
-        // dd($cmt);
         $posts = Post::all();
         $comments = Comment::all();
-
-        // $test = $comments->user();
-        // dd($posts->user['name']);
+        // dd($comments[0]->user['avatar']);
         return view('forum', compact('posts', 'comments'));
     }
 }

@@ -14,12 +14,9 @@ class CommentController extends Controller
 
     }
 
+    // Post comment
     public function postComment(Request $req, $id, $post_id)
-    {
-        $file       = 'file_comment'.$post_id;
-        $name_file  = 'new_name_comment'.$post_id; 
-        // dd($file);
-        // dd($req->$file);
+    {   
         $comment  = new Comment;
         $comment->post_id = $post_id;
         $comment->user_id = Auth::user()->id;
@@ -28,15 +25,55 @@ class CommentController extends Controller
         if($req->content != NULL)
             $comment->content = $req->content;
 
-        if($req->$name_file != NULL)
-        {
-            $comment->picture = $req->$name_file;
-            $file = $req->file($file);
-            $file->move('images/comments', $req->$name_file);
-        }
+            $file       = 'file_comment'.$post_id;
+            $name_file  = 'new_name_comment'.$post_id;
+            $name_pic = ''; 
+            $name_cam = ''; 
+    
+            if($req->$name_file != '#')
+            {
+                $file = $req->file($file);
+                $file->move('images/comments', $req->$name_file);
+    
+                $name_pic = $req->$name_file;
+            }
+    
+            if($req->srcImage != null)
+            {
+                $rawData        = $req->srcImage;
+                $filteredData   = explode(',', $rawData);
+                $unencoded      = base64_decode($filteredData[1]);
+                $randomName     = rand(0, 99999);;
+                $rs             = file_put_contents('images/comments/'.$randomName.'.png', $unencoded);
+                $name_cam       = $randomName.'.png';    
+            }
 
+            if($name_cam == '' && $name_pic != '')
+                $comment->picture   = $name_pic;
+            if($name_cam != '' && $name_pic == '')
+                $comment->picture   = $name_cam;
+            if($name_cam != '' && $name_pic != '')
+                $comment->picture   = $name_pic . ',' . $name_cam;
         $comment->save();
 
         return redirect()->route('forum');
+    }
+
+    // edit comment
+    public function editComment(Request $req)
+    {   
+        $cmt            = Comment::find($req->comment_id);
+        $cmt->content   = $req->comment_content;
+        $cmt->save();
+        
+        return redirect()->route('forum');        
+    }
+
+    public function deleteComment($id)
+    {
+        $cmt = Comment::find($id);
+        $cmt->delete();
+
+        return redirect()->route('forum');        
     }
 }
