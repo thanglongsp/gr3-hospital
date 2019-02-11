@@ -71,6 +71,27 @@ function displayCommentImage(clicked_id) {
     }
 }
 
+// display comment's picture
+function displayReplyImage(clicked_id) {
+    // alert(clicked_id);
+    var preview = document.getElementById('picture_reply'+clicked_id); //selects the query named img
+    var file = document.querySelector("input[name=file_reply"+ clicked_id +"]").files[0]; //sames as here
+    // alert(file);
+    var reader = new FileReader();
+    reader.onloadend = function() {
+        preview.src = reader.result;
+    }
+    if (file != null) {
+        document.getElementById('new_name_reply'+clicked_id).value = file['name'];
+        //alert(document.getElementById('new_name').value);
+    }
+    if (file) {
+        reader.readAsDataURL(file); //reads the data as a URL
+    } else {
+        preview.src = "";
+    }
+}
+
 // Lấy ảnh từ cam máy tính.
 function takePicture(clicked_value){
     //alert(clicked_value);
