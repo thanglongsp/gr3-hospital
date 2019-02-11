@@ -62,6 +62,11 @@ Route::post('/comments/edit',[
     'uses'=>'CommentController@editComment'
 ]);
 
+Route::post('/comments/reply',[
+    'as'=>'comments.reply',
+    'uses'=>'CommentController@replyComment'
+]);
+
 Route::get('/comments/delete/{id}', [
     'as'=>'comments.delete',
     'uses'=>'CommentController@deleteComment'
