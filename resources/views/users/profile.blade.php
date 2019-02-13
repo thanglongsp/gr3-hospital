@@ -82,6 +82,8 @@
                     <!-- end modal -->
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Thông tin cá nhân')">Thông tin cá nhân</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Hồ sơ bệnh án')">Hồ sơ bệnh án</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bài viết yêu thích')">Bài viết yêu thích</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bài viết của tôi')">Bài viết của tôi</button>
             </div>
         </div>
         <div class="col-sm-8">
@@ -255,6 +257,32 @@
                         <p> <a href="#" style="margin-left:90%; color: blue;">chi tiết</a>
                     </div>
                 </div>
+
+                <!-- display favarite post -->
+                <div id="Bài viết yêu thích" class="w3-container city" style="display:none">
+                    <div class="ex1">
+                    @foreach($likes->sortByDESC('created_at') as $like)
+                        <h2>Tiêu đề : {{ $like->post['title'] }}</h2>
+                        <p>Thời gian : {{ $like->post['created_at'] }}</p> 
+                        <p>Người đăng : {{ $like->post->user['name']}}</p>
+                        <p> <a href="#" style="margin-left:90%; color: blue;"><u>chi tiết</u></a>
+                    @endforeach
+                    </div>
+                </div>
+                <!-- End display favarite post -->
+
+                <!-- display favarite post -->
+                <div id="Bài viết của tôi" class="w3-container city" style="display:none">
+                    <div class="ex1">
+                    @foreach($posts->sortBy('created_at') as $post)
+                        <h2>Tiêu đề : {{ $post->title }}</h2>
+                        <p>Thời gian : {{ $post->created_at }}</p> 
+                        <p> <a href="#" style="margin-left:90%; color: blue;"><u>chi tiết</u></a>
+                    @endforeach
+                    </div>
+                </div>
+                <!-- End display favarite post -->
+
             </div>    
         </div>
     </div>

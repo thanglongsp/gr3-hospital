@@ -30,15 +30,8 @@ class ForumController extends Controller
         $comments   = Comment::all();
         $likes      = Like::all();
         $count_like = $likes->count();
-        // dd($count_like);
-
-        // $like = new Like;
-        // $like->user_id = 1;
-        // $like->post_id = 1;
-        // $like->value = 1;        
-        // $like->save();
-        // dd($posts[0]->likes[0]);
-        return view('forum', compact('posts', 'comments', 'likes', 'count_like'));
+        $dem;
+        return view('forum', compact('posts', 'comments', 'likes', 'count_like', 'dem'));
     }
 
     // like post
