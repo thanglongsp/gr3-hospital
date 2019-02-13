@@ -19,9 +19,10 @@ Route::get('/home', function () {
 })->name('home'); 
 
 // User
-Route::get('/users/{id}/profile', function(){
-    return view('users.profile');
-})->name('users.profile');
+Route::get('/users/{id}/profile',[
+    'as'=>'users.profile',
+    'uses'=>'UserController@getProfile'
+]);
 
 Route::post('/users/{id}/update/profile',[
     'as'=>'users.update_profile',

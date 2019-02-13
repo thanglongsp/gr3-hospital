@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Like;
+use App\Post;
 
 class UserController extends Controller
 {
@@ -41,5 +43,15 @@ class UserController extends Controller
         $file->move('images/avatars', $req->new_name);
         $user->save();
         return redirect()->route('users.profile', $user->id);
+    }
+
+    // get list favarite post
+    public function getProfile($id){
+        $user   = User::find($id);
+        $likes   = Like::all()->where('user_id', Auth::user()->id);
+        $posts   = Post::all()->where('user_id', Auth::user()->id);
+        // dd($likes);
+        // dd($user->likes[1]->post['title']);
+        return view('users.profile', compact('user','likes', 'posts'));
     }
 }
