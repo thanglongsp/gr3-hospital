@@ -46,6 +46,12 @@ Route::post('/users/post', [
     'uses'=>'ForumController@post'
 ]);
 
+Route::post('/posts/{id}/like', [
+    'as'=>'posts.like',
+    'uses'=>'ForumController@likePost'
+]);
+
+
 // Comments
 Route::get('test', [
     'as'=>'test',

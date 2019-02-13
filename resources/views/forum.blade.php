@@ -64,8 +64,35 @@
                 @endif      
                 </div>          
                 <div class="divPostUserFooter">
-                    <a href="#"><span class="glyphicon glyphicon-heart" style="font-size:25px; color:red;"></span></a>
-                    <a data-toggle="collapse" data-parent="#accordion" href="#comment{{ $post->id }}"><span class="glyphicon glyphicon-envelope" style="font-size:25px; color:blue;"></span></a>
+                @if($count_like != 0)
+                    @foreach($likes as $like)
+                        @if($like->user_id == Auth::user()->id && $like->post_id == $post->id)
+                            <form method="post" action="{{ route('posts.like', $post->id) }}" enctype="multipart/form-data">
+                            @csrf
+                                <input type="hidden" name="value" value="0">
+                                <input type="hidden" name="like_id" value="{{ $like->id }}">
+                                <button type="submit" style="background-color: Transparent;border: none;"><span class="glyphicon glyphicon-heart" style="font-size:25px; color:red;"></span></button>
+                            </form>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#comment{{ $post->id }}"><span class="glyphicon glyphicon-envelope" style="font-size:25px; color:blue;"></span></a>
+                        @endif
+                        @if($post->like['post_id'] == NULL)
+                            <form method="post" action="{{ route('posts.like', $post->id) }}" enctype="multipart/form-data">
+                            @csrf
+                                <input type="hidden" name="value" value="1">
+                                <button type="submit" style="background-color: Transparent;border: none;"><span class="glyphicon glyphicon-heart" style="font-size:25px; color:blue;" name="value" value="1"></span></button>
+                            </form>                    
+                            <a data-toggle="collapse" data-parent="#accordion" href="#comment{{ $post->id }}"><span class="glyphicon glyphicon-envelope" style="font-size:25px; color:blue;"></span></a>
+                        @endif
+                    @endforeach
+                @endif
+                @if($count_like == 0)
+                        <form method="post" action="{{ route('posts.like', $post->id) }}" enctype="multipart/form-data">
+                        @csrf
+                            <input type="hidden" name="value" value="1">
+                            <button type="submit" style="background-color: Transparent;border: none;"><span class="glyphicon glyphicon-heart" style="font-size:25px; color:blue;" name="value" value="1"></span></button>
+                        </form>                    
+                        <a data-toggle="collapse" data-parent="#accordion" href="#comment{{ $post->id }}"><span class="glyphicon glyphicon-envelope" style="font-size:25px; color:blue;"></span></a>
+                @endif
                 </div>
 
                 <!-- Bình luận -->
@@ -464,4 +491,23 @@
         </div>
     </div>
 </div>
+<script>
+var check =  1;
+$(document).ready(function(){
+    $("#heart_1").on({
+        click: function(){
+            if(check == 2)
+            {
+                $(this).css("color", "red");
+                check = 1;
+            }
+            else 
+            {
+                $(this).css("color", "blue");
+                check = 2;
+            }
+        }
+    });
+});
+</script>
 @endsection
