@@ -14,9 +14,10 @@
 Auth::routes();
 
 // Home
-Route::get('/home', function () {
-    return view('home');
-})->name('home'); 
+Route::get('/home/{bv}/{khoa}/{cm}/{date}/{time}',[
+    'as'=>'home',
+    'uses'=>'HomeController@getHome'
+]); 
 
 // User
 Route::get('/users/{id}/profile',[
@@ -68,7 +69,7 @@ Route::post('/comments/edit',[
     'as'=>'comments.edit',
     'uses'=>'CommentController@editComment'
 ]);
-
+ 
 Route::post('/comments/reply',[
     'as'=>'comments.reply',
     'uses'=>'CommentController@replyComment'
@@ -77,4 +78,21 @@ Route::post('/comments/reply',[
 Route::get('/comments/delete/{id}', [
     'as'=>'comments.delete',
     'uses'=>'CommentController@deleteComment'
+]);
+
+// Hospital A
+Route::get('/create/table', [
+    'as'=>'create.table',
+    'uses'=>'HospitalAController@table'
+]);
+
+// Ajax
+Route::get('ajax/khoa/{idKhoa}',[
+    'as'=>'khoa.chuyenmon',
+    'uses'=>'AjaxController@getChuyenmon'
+]);
+
+Route::get('ajax/benhvien/{ma_khoa}',[
+    'as'=>'benhvien.khoa',
+    'uses'=>'AjaxController@getKhoa'
 ]);
