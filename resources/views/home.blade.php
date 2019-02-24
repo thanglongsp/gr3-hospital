@@ -58,54 +58,104 @@
         <div  class="col-sm-8">
         <div class="myDivResult">
             <br>
-            <h2> Kết quả tìm kiếm :</h2>
+            <h2> Kết quả tìm kiếm : </h2>
             <br>
-            <div class="col-sm-6">
-            @foreach($tests as $test)
-            <div class="myDivResultChild">
-                <ul>
-                    <li>Bệnh viện : A </li>
-                    <li>Tên khoa : {{ $test->ten_khoa }} </li>
-                    <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
-                    <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
-                    <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
-                    <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
-                    <li>Quy trình : {{ $test->quy_trinh }} </li>
-                    <li>Trạng thái : </li>
-                    @if($test->ma_cach_thuc == 'BT')
-                    <li>Chế độ : Bình thường</li>
-                    @else
-                    <li>Chế độ : Chuyên gia</li>
-                    @endif
-                </ul>
-                <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+            @if($chuyenmons_a != "" && $chuyenmons_b != "")
+                <div class="col-sm-6">
+                    @foreach($chuyenmons_a as $test)
+                    <div class="myDivResultChild">
+                        <ul>
+                            <li>Bệnh viện : A </li>
+                            <li>Tên khoa : {{ $test->ten_khoa }} </li>
+                            <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
+                            <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
+                            <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
+                            <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
+                            <li>Quy trình : {{ $test->quy_trinh }} </li>
+                            <li>Trạng thái : </li>
+                            @if($test->ma_cach_thuc == 'BT')
+                            <li>Chế độ : Bình thường</li>
+                            @else
+                            <li>Chế độ : Chuyên gia</li>
+                            @endif
+                        </ul>
+                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    </div>
+                    @endforeach
+                </div>
+
+                <div class="col-sm-6">
+                    @foreach($chuyenmons_b as $test)
+                    <div class="myDivResultChild">
+                        <ul>
+                            <li>Bệnh viện : B </li>
+                            <li>Tên khoa : {{ $test->ten_khoa }} </li>
+                            <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
+                            <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
+                            <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
+                            <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
+                            <li>Quy trình : {{ $test->quy_trinh }} </li>
+                            <li>Trạng thái : </li>
+                            @if($test->ma_cach_thuc == 'BT')
+                            <li>Chế độ : Bình thường</li>
+                            @else
+                            <li>Chế độ : Chuyên gia</li>
+                            @endif
+                        </ul>
+                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    </div>
+                    @endforeach
+                </div>
+
             </div>
-            @endforeach
-            </div>
-            <div class="col-sm-6">
-            @foreach($tests as $test)
-            <div class="myDivResultChild">
-                <ul>
-                    <li>Bệnh viện : A </li>
-                    <li>Tên khoa : {{ $test->ten_khoa }} </li>
-                    <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
-                    <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
-                    <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
-                    <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
-                    <li>Quy trình : {{ $test->quy_trinh }} </li>
-                    <li>Trạng thái : </li>
-                    @if($test->ma_cach_thuc == 'BT')
-                    <li>Chế độ : Bình thường</li>
-                    @else
-                    <li>Chế độ : Chuyên gia</li>
-                    @endif
-                </ul>
-                <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
-            </div>
-            @endforeach
-            </div>
-        </div>
-        {{ $tests->links() }}
+            {{ $chuyenmons_a->links() }}
+        @endif
+        @if($chuyenmons_a != "" && $chuyenmons_b == "")
+                @foreach($chuyenmons_a as $test)
+                <div class="myDivResultChild">
+                    <ul>
+                        <li>Bệnh viện : A </li>
+                        <li>Tên khoa : {{ $test->ten_khoa }} </li>
+                        <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
+                        <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
+                        <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
+                        <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
+                        <li>Quy trình : {{ $test->quy_trinh }} </li>
+                        <li>Trạng thái : </li>
+                        @if($test->ma_cach_thuc == 'BT')
+                        <li>Chế độ : Bình thường</li>
+                        @else
+                        <li>Chế độ : Chuyên gia</li>
+                        @endif
+                    </ul>
+                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                </div>
+                @endforeach
+            {{ $chuyenmons_a->links() }}
+        @endif
+        @if($chuyenmons_a == "" && $chuyenmons_b != "")
+                @foreach($chuyenmons_b as $test)
+                <div class="myDivResultChild">
+                    <ul>
+                        <li>Bệnh viện : B </li>
+                        <li>Tên khoa : {{ $test->ten_khoa }} </li>
+                        <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
+                        <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
+                        <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
+                        <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
+                        <li>Quy trình : {{ $test->quy_trinh }} </li>
+                        <li>Trạng thái : </li>
+                        @if($test->ma_cach_thuc == 'BT')
+                        <li>Chế độ : Bình thường</li>
+                        @else
+                        <li>Chế độ : Chuyên gia</li>
+                        @endif
+                    </ul>
+                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                </div>
+                @endforeach
+            {{ $chuyenmons_b->links() }}
+        @endif
     </div>
     </div>
 
