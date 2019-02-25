@@ -37,6 +37,7 @@ class HomeController extends Controller
                     ->join('khoas', 'chuyenmons.ma_khoa', '=', 'khoas.ma_khoa')
                     ->join('quytrinhs', 'chuyenmons.ma_chuyen_mon', '=', 'quytrinhs.ma_chuyen_mon')
                     ->paginate(2);
+            $search_info = "Tất cả các bệnh viện, tất cả các khoa, tất cả các chuyên môn";
         }
         if($bv == 'ALL' && $khoa != 'ALL' && $cm == 'ALL' )
         {
@@ -50,6 +51,7 @@ class HomeController extends Controller
                     ->join('quytrinhs', 'chuyenmons.ma_chuyen_mon', '=', 'quytrinhs.ma_chuyen_mon')
                     ->where('chuyenmons.ma_khoa', '=', $khoa)
                     ->paginate(2);
+            $search_info = "Tất cả các bệnh viện, ".$chuyenmons_a[0]->ten_khoa.", tất cả các chuyên môn";
         }
         if($bv == 'ALL' && $khoa == 'ALL' && $cm != 'ALL' )
         {
@@ -63,51 +65,57 @@ class HomeController extends Controller
                     ->join('quytrinhs', 'chuyenmons.ma_chuyen_mon', '=', 'quytrinhs.ma_chuyen_mon')
                     ->where('chuyenmons.ma_chuyen_mon', '=', $cm)
                     ->get();
+            $search_info = "Tất cả các bệnh viện, chuyên môn ".$chuyenmons_a[0]->ten_chuyen_mon;            
         }
         if($bv == 'ALL' && $khoa != 'ALL' && $cm != 'ALL' )
         {
             $chuyenmons_a = DB::connection('mysqla')->table('chuyenmons')
                     ->join('khoas', 'chuyenmons.ma_khoa', '=', 'khoas.ma_khoa')
                     ->join('quytrinhs', 'chuyenmons.ma_chuyen_mon', '=', 'quytrinhs.ma_chuyen_mon')
-                    // ->where('chuyenmons.ma_chuyen_mon', '=', $cm)
-                    ->where('chuyenmons.ma_khoa', '=', $khoa)
-                    ->paginate(2);
+                    ->where([['chuyenmons.ma_khoa', '=', $khoa],['chuyenmons.ma_chuyen_mon', '=', $cm]])                    
+                    ->get();                    
             $chuyenmons_b = DB::connection('mysqlb')->table('chuyenmons')
                     ->join('khoas', 'chuyenmons.ma_khoa', '=', 'khoas.ma_khoa')
                     ->join('quytrinhs', 'chuyenmons.ma_chuyen_mon', '=', 'quytrinhs.ma_chuyen_mon')
-                    // ->where('chuyenmons.ma_chuyen_mon', '=', $cm)
-                    ->where('chuyenmons.ma_khoa', '=', $khoa)
-                    ->paginate(2);
+                    ->where([['chuyenmons.ma_khoa', '=', $khoa],['chuyenmons.ma_chuyen_mon', '=', $cm]])
+                    ->get();
+            $search_info = "Tất cả các bệnh viện, ".$chuyenmons_a[0]->ten_khoa.", chuyên môn ".$chuyenmons_a[0]->ten_chuyen_mon;                        
         }
-        if($bv == 'A' && $khoa == 'ALL' && $cm == 'ALL')
+        if($bv == 'A' && $khoa == 'ALL' && $ma_chuyen_mon == 'ALL')
         {
             $chuyenmons_a = DB::connection('mysqla')->table('chuyenmons')
                 ->join('khoas', 'chuyenmons.ma_khoa', '=', 'khoas.ma_khoa')
                 ->join('quytrinhs', 'chuyenmons.ma_chuyen_mon', '=', 'quytrinhs.ma_chuyen_mon')
                 ->paginate(2);
+            $search_info = "Bệnh viện A, tất cả khoa, tất cả chuyên môn";                        
         }
-        if($bv == 'A' && $khoa == 'ALL' && $cm != 'ALL')
+        // dd($chuyenmons_a);
+        if($bv == 'A' && $ma_chuyen_mon != 'ALL')
         {
             $chuyenmons_a = DB::connection('mysqla')->table('chuyenmons')
                 ->join('khoas', 'chuyenmons.ma_khoa', '=', 'khoas.ma_khoa')
                 ->join('quytrinhs', 'chuyenmons.ma_chuyen_mon', '=', 'quytrinhs.ma_chuyen_mon')
                 ->where('chuyenmons.ma_chuyen_mon', '=', $cm)
                 ->get();
+
+            $search_info = "Bệnh viện A, chuyên môn".$chuyenmons_a[0]->ten_chuyen_mon;                        
         }
-        if($bv == 'A' && $khoa != 'ALL')
+        if($bv == 'A' && $khoa != 'ALL' && $ma_chuyen_mon == "ALL")
         {
             $chuyenmons_a = DB::connection('mysqla')->table('chuyenmons')
                 ->join('khoas', 'chuyenmons.ma_khoa', '=', 'khoas.ma_khoa')
                 ->join('quytrinhs', 'chuyenmons.ma_chuyen_mon', '=', 'quytrinhs.ma_chuyen_mon')
                 ->where('chuyenmons.ma_khoa', '=', $khoa)
                 ->paginate(2);
+            $search_info = "Bệnh viện A, ".$chuyenmons_a[0]->ten_khoa.", chuyên môn ".$chuyenmons_a[0]->ten_chuyen_mon;                                    
         }
-        if($bv == 'B' && $khoa == 'ALL')
+        if($bv == 'B' && $khoa == 'ALL' && $ma_chuyen_mon == 'ALL')
         {
             $chuyenmons_b = DB::connection('mysqlb')->table('chuyenmons')
                 ->join('khoas', 'chuyenmons.ma_khoa', '=', 'khoas.ma_khoa')
                 ->join('quytrinhs', 'chuyenmons.ma_chuyen_mon', '=', 'quytrinhs.ma_chuyen_mon')
                 ->paginate(2);
+            $search_info = "Bệnh viện B, tất cả khoa, tất cả chuyên môn"; 
         }
         if($bv == 'B' && $khoa != 'ALL')
         {
@@ -116,6 +124,7 @@ class HomeController extends Controller
                 ->join('quytrinhs', 'chuyenmons.ma_chuyen_mon', '=', 'quytrinhs.ma_chuyen_mon')
                 ->where('chuyenmons.ma_khoa', '=', $khoa)
                 ->paginate(2);
+            $search_info = "Bệnh viện B, chuyên môn".$chuyenmons_b[0]->ten_chuyen_mon;
         }
         if($bv == 'B' && $khoa == 'ALL' && $cm != 'ALL')
         {
@@ -124,10 +133,16 @@ class HomeController extends Controller
                 ->join('quytrinhs', 'chuyenmons.ma_chuyen_mon', '=', 'quytrinhs.ma_chuyen_mon')
                 ->where('chuyenmons.ma_chuyen_mon', '=', $cm)
                 ->get();
+            $search_info = "Bệnh viện B, ".$chuyenmons_b[0]->ten_khoa.", chuyên môn ".$chuyenmons_b[0]->ten_chuyen_mon;
         }
 
         $chuyenmons = DB::connection('mysqla')->table('chuyenmons')->get();
         $requests_a = DB::connection('mysqla')
+                    ->table('requests')
+                    ->where('trang_thai', 3)
+                    ->orWhere('trang_thai', 2)
+                    ->get();
+        $requests_b = DB::connection('mysqlb')
                     ->table('requests')
                     ->where('trang_thai', 3)
                     ->orWhere('trang_thai', 2)
@@ -140,11 +155,8 @@ class HomeController extends Controller
         $time = explode(':',$time);
         $time_gio = $time[0];
         $time_phut = $time[1];
-        // dd($t[0] + 1);
-        // dd($date);
-
-        // $requests_a
-        return view('home', compact('chuyenmons_a', 'chuyenmons_b', 'chuyenmons', 'ma_chuyen_mon', 'bv', 'date', 'requests_a', 'time_gio', 'time_phut'));
+        
+        return view('home', compact('chuyenmons_a', 'chuyenmons_b', 'chuyenmons', 'ma_chuyen_mon', 'bv', 'khoa', 'date', 'requests_a', 'requests_b', 'time_gio', 'time_phut', 'search_info'));
     }
     
 }
