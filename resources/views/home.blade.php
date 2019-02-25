@@ -79,8 +79,9 @@
         <div class="myDivResult">
             <br>
             <h2> Kết quả tìm kiếm : </h2>
+            <p style = "color: blue">{{ $search_info }}</p>
             <br>
-            @if($chuyenmons_a != "" && $chuyenmons_b != "" && $ma_chuyen_mon == 'ALL')
+            @if($bv == 'ALL' && $khoa == 'ALL' && $ma_chuyen_mon == 'ALL')            
                 <div class="col-sm-6">
                     @foreach($chuyenmons_a as $test)
                     <p type="hidden" value="{{ $dem = 1 }}">
@@ -136,7 +137,7 @@
                             <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
                             <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
                             <li>Quy trình : {{ $test->quy_trinh }} </li>
-                            @foreach( $requests_a as $rq )
+                            @foreach( $requests_b as $rq )
                                 @if( $rq->ma_chuyen_mon == $test->ma_chuyen_mon && $rq->ngay_thu == $date && $rq->cach_thuc == $test->ma_cach_thuc)
                                     @if(explode(':',$rq->thoi_gian)[0] == ($time_gio + 1))
                                         @if(explode(':',$rq->thoi_gian)[1] < $time_phut)
@@ -150,6 +151,11 @@
                                     @endif
                                 @endif
                             @endforeach
+                            @if( $dem == 1 )
+                            <li>Trạng thái : Có thể đặt lịch </li>
+                            @else
+                            <li>Trạng thái : Không thể đặt lịch </li>
+                            @endif
                             @if($test->ma_cach_thuc == 'BT')
                             <li>Chế độ : Bình thường</li>
                             @else
@@ -163,7 +169,94 @@
                 {{ $chuyenmons_a->links() }}
             </div>
         @endif
-        @if($chuyenmons_a != "" && $chuyenmons_b != "" && $ma_chuyen_mon != 'ALL')
+        @if($bv == 'ALL' && $khoa != 'ALL' && $ma_chuyen_mon != 'ALL')
+                <div class="col-sm-6">
+                    @foreach($chuyenmons_a as $test)
+                    <p type="hidden" value="{{ $dem = 1 }}">
+                    <div class="myDivResultChild">
+                        <ul>
+                            <li>Bệnh viện : A </li>
+                            <li>Tên khoa : {{ $test->ten_khoa }} </li>
+                            <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
+                            <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
+                            <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
+                            <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
+                            <li>Quy trình : {{ $test->quy_trinh }} </li>
+                            @foreach( $requests_a as $rq )
+                                @if( $rq->ma_chuyen_mon == $test->ma_chuyen_mon && $rq->ngay_thu == $date && $rq->cach_thuc == $test->ma_cach_thuc)
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio + 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] < $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio - 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] > $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                @endif
+                            @endforeach
+                            @if( $dem == 1 )
+                            <li>Trạng thái : Có thể đặt lịch </li>
+                            @else
+                            <li>Trạng thái : Không thể đặt lịch </li>
+                            @endif
+
+                            @if($test->ma_cach_thuc == 'BT')
+                            <li>Chế độ : Bình thường</li>
+                            @else
+                            <li>Chế độ : Chuyên gia</li>
+                            @endif
+                        </ul>
+                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    </div>
+                    @endforeach
+                </div>
+
+                <div class="col-sm-6">
+                    @foreach($chuyenmons_b as $test)
+                    <p type="hidden" value="{{ $dem = 1 }}">
+                    <div class="myDivResultChild">
+                        <ul>
+                            <li>Bệnh viện : B </li>
+                            <li>Tên khoa : {{ $test->ten_khoa }} </li>
+                            <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
+                            <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
+                            <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
+                            <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
+                            <li>Quy trình : {{ $test->quy_trinh }} </li>
+                            @foreach( $requests_b as $rq )
+                                @if( $rq->ma_chuyen_mon == $test->ma_chuyen_mon && $rq->ngay_thu == $date && $rq->cach_thuc == $test->ma_cach_thuc)
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio + 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] < $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio - 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] > $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                @endif
+                            @endforeach
+                            @if( $dem == 1 )
+                            <li>Trạng thái : Có thể đặt lịch </li>
+                            @else
+                            <li>Trạng thái : Không thể đặt lịch </li>
+                            @endif
+                            @if($test->ma_cach_thuc == 'BT')
+                            <li>Chế độ : Bình thường</li>
+                            @else
+                            <li>Chế độ : Chuyên gia</li>
+                            @endif
+                        </ul>
+                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+        @if($bv == 'ALL' && $khoa != "ALL" && $ma_chuyen_mon == 'ALL')
                 <div class="col-sm-6">
                     @foreach($chuyenmons_a as $test)
                     <p type="hidden" value="{{ $dem = 1 }}">
@@ -213,7 +306,7 @@
                             <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
                             <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
                             <li>Quy trình : {{ $test->quy_trinh }} </li>
-                            @foreach( $requests_a as $rq )
+                            @foreach( $requests_b as $rq )
                                 @if( $rq->ma_chuyen_mon == $test->ma_chuyen_mon && $rq->ngay_thu == $date && $rq->cach_thuc == $test->ma_cach_thuc)
                                     @if(explode(':',$rq->thoi_gian)[0] == ($time_gio + 1))
                                         @if(explode(':',$rq->thoi_gian)[1] < $time_phut)
@@ -244,8 +337,177 @@
                     </div>
                     @endforeach
                 </div>
-
+            {{ $chuyenmons_a->links() }}
             </div>
+        @endif
+        @if($bv == 'ALL' && $khoa == "ALL" && $ma_chuyen_mon != 'ALL')
+                <div class="col-sm-6">
+                    @foreach($chuyenmons_a as $test)
+                    <p type="hidden" value="{{ $dem = 1 }}">
+                    <div class="myDivResultChild">
+                        <ul>
+                            <li>Bệnh viện : A </li>
+                            <li>Tên khoa : {{ $test->ten_khoa }} </li>
+                            <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
+                            <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
+                            <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
+                            <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
+                            <li>Quy trình : {{ $test->quy_trinh }} </li>
+                            @foreach( $requests_a as $rq )
+                                @if( $rq->ma_chuyen_mon == $test->ma_chuyen_mon && $rq->ngay_thu == $date && $rq->cach_thuc == $test->ma_cach_thuc)
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio + 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] < $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio - 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] > $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                @endif
+                            @endforeach
+                            @if($test->ma_cach_thuc == 'BT')
+                            <li>Chế độ : Bình thường</li>
+                            @else
+                            <li>Chế độ : Chuyên gia</li>
+                            @endif
+                        </ul>
+                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    </div>
+                    @endforeach
+                </div>
+
+                <div class="col-sm-6">
+                    @foreach($chuyenmons_b as $test)
+                    <p type="hidden" value="{{ $dem = 1 }}">
+                    <div class="myDivResultChild">
+                        <ul>
+                            <li>Bệnh viện : B </li>
+                            <li>Tên khoa : {{ $test->ten_khoa }} </li>
+                            <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
+                            <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
+                            <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
+                            <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
+                            <li>Quy trình : {{ $test->quy_trinh }} </li>
+                            @foreach( $requests_b as $rq )
+                                @if( $rq->ma_chuyen_mon == $test->ma_chuyen_mon && $rq->ngay_thu == $date && $rq->cach_thuc == $test->ma_cach_thuc)
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio + 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] < $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio - 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] > $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                @endif
+                            @endforeach
+
+                            @if( $dem == 1 )
+                            <li>Trạng thái : Có thể đặt lịch </li>
+                            @else
+                            <li>Trạng thái : Không thể đặt lịch </li>
+                            @endif
+
+                            @if($test->ma_cach_thuc == 'BT')
+                            <li>Chế độ : Bình thường</li>
+                            @else
+                            <li>Chế độ : Chuyên gia</li>
+                            @endif
+                        </ul>
+                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+        @if($bv == "A" && $khoa == "ALL" && $ma_chuyen_mon == 'ALL')
+                @foreach($chuyenmons_a as $test)
+                <p type="hidden" value="{{ $dem = 1 }}">                
+                <div class="myDivResultChild">
+                    <ul>
+                        <li>Bệnh viện : A </li>
+                        <li>Tên khoa : {{ $test->ten_khoa }} </li>
+                        <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
+                        <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
+                        <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
+                        <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
+                        <li>Quy trình : {{ $test->quy_trinh }} </li>
+                            @foreach( $requests_a as $rq )
+                                @if( $rq->ma_chuyen_mon == $test->ma_chuyen_mon && $rq->ngay_thu == $date && $rq->cach_thuc == $test->ma_cach_thuc)
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio + 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] < $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio - 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] > $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                @endif
+                            @endforeach
+
+                            @if( $dem == 1 )
+                            <li>Trạng thái : Có thể đặt lịch </li>
+                            @else
+                            <li>Trạng thái : Không thể đặt lịch </li>
+                            @endif
+                        @if($test->ma_cach_thuc == 'BT')
+                        <li>Chế độ : Bình thường</li>
+                        @else
+                        <li>Chế độ : Chuyên gia</li>
+                        @endif
+                    </ul>
+                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                </div>
+                @endforeach
+                {{ $chuyenmons_a->links() }}
+        @endif
+        @if($bv == "A" && $khoa != "ALL" && $ma_chuyen_mon == 'ALL')
+                @foreach($chuyenmons_a as $test)
+                <p type="hidden" value="{{ $dem = 1 }}">                
+                <div class="myDivResultChild">
+                    <ul>
+                        <li>Bệnh viện : A </li>
+                        <li>Tên khoa : {{ $test->ten_khoa }} </li>
+                        <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
+                        <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
+                        <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
+                        <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
+                        <li>Quy trình : {{ $test->quy_trinh }} </li>
+                            @foreach( $requests_a as $rq )
+                                @if( $rq->ma_chuyen_mon == $test->ma_chuyen_mon && $rq->ngay_thu == $date && $rq->cach_thuc == $test->ma_cach_thuc)
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio + 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] < $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio - 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] > $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                @endif
+                            @endforeach
+
+                            @if( $dem == 1 )
+                            <li>Trạng thái : Có thể đặt lịch </li>
+                            @else
+                            <li>Trạng thái : Không thể đặt lịch </li>
+                            @endif
+                        @if($test->ma_cach_thuc == 'BT')
+                        <li>Chế độ : Bình thường</li>
+                        @else
+                        <li>Chế độ : Chuyên gia</li>
+                        @endif
+                    </ul>
+                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                </div>
+                @endforeach
+                {{ $chuyenmons_a->links() }}
         @endif
         @if($bv == "A" && $ma_chuyen_mon != "ALL")
                 @foreach($chuyenmons_a as $test)
@@ -289,51 +551,9 @@
                 </div>
                 @endforeach
         @endif
-        @if($bv == "B" && $ma_chuyen_mon != "ALL")
+        @if($bv == "B" && $khoa != "ALL" && $ma_chuyen_mon == 'ALL')
                 @foreach($chuyenmons_b as $test)
-                <p type="hidden" value="{{ $dem = 1 }}">
-                <div class="myDivResultChild">
-                    <ul>
-                        <li>Bệnh viện : B </li>
-                        <li>Tên khoa : {{ $test->ten_khoa }} </li>
-                        <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
-                        <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
-                        <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
-                        <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
-                        <li>Quy trình : {{ $test->quy_trinh }} </li>
-                            @foreach( $requests_a as $rq )
-                                @if( $rq->ma_chuyen_mon == $test->ma_chuyen_mon && $rq->ngay_thu == $date && $rq->cach_thuc == $test->ma_cach_thuc)
-                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio + 1))
-                                        @if(explode(':',$rq->thoi_gian)[1] < $time_phut)
-                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
-                                        @endif 
-                                    @endif
-                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio - 1))
-                                        @if(explode(':',$rq->thoi_gian)[1] > $time_phut)
-                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
-                                        @endif 
-                                    @endif
-                                @endif
-                            @endforeach
-
-                            @if( $dem == 1 )
-                            <li>Trạng thái : Có thể đặt lịch </li>
-                            @else
-                            <li>Trạng thái : Không thể đặt lịch </li>
-                            @endif
-                        @if($test->ma_cach_thuc == 'BT')
-                        <li>Chế độ : Bình thường</li>
-                        @else
-                        <li>Chế độ : Chuyên gia</li>
-                        @endif
-                    </ul>
-                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
-                </div>
-                @endforeach
-        @endif
-        @if($chuyenmons_a != "" && $chuyenmons_b == "" && $ma_chuyen_mon == 'ALL')
-                @foreach($chuyenmons_a as $test)
-                <p type="hidden" value="{{ $dem = 1 }}">
+                <p type="hidden" value="{{ $dem = 1 }}">                
                 <div class="myDivResultChild">
                     <ul>
                         <li>Bệnh viện : A </li>
@@ -372,14 +592,14 @@
                     <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
                 </div>
                 @endforeach
-            {{ $chuyenmons_a->links() }}
+                {{ $chuyenmons_b->links() }}
         @endif
-        @if($chuyenmons_a == "" && $chuyenmons_b != "" && $ma_chuyen_mon == 'ALL')
+        @if($bv == "B" && $khoa == "ALL" && $ma_chuyen_mon == 'ALL')
                 @foreach($chuyenmons_b as $test)
-                <p type="hidden" value="{{ $dem = 1 }}">
+                <p type="hidden" value="{{ $dem = 1 }}">                
                 <div class="myDivResultChild">
                     <ul>
-                        <li>Bệnh viện : B </li>
+                        <li>Bệnh viện : A </li>
                         <li>Tên khoa : {{ $test->ten_khoa }} </li>
                         <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
                         <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
@@ -415,7 +635,49 @@
                     <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
                 </div>
                 @endforeach
-            {{ $chuyenmons_b->links() }}
+                {{ $chuyenmons_b->links() }}
+        @endif
+        @if($bv == "B" && $ma_chuyen_mon != "ALL")
+                @foreach($chuyenmons_b as $test)
+                <p type="hidden" value="{{ $dem = 1 }}">
+                <div class="myDivResultChild">
+                    <ul>
+                        <li>Bệnh viện : B </li>
+                        <li>Tên khoa : {{ $test->ten_khoa }} </li>
+                        <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
+                        <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
+                        <li>thời gian bắt đầu : {{ $test->thoi_gian_bd}}</li>
+                        <li>Thời gian kết thúc : {{ $test->thoi_gian_kt}}</li>
+                        <li>Quy trình : {{ $test->quy_trinh }} </li>
+                            @foreach( $requests_b as $rq )
+                                @if( $rq->ma_chuyen_mon == $test->ma_chuyen_mon && $rq->ngay_thu == $date && $rq->cach_thuc == $test->ma_cach_thuc)
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio + 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] < $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                    @if(explode(':',$rq->thoi_gian)[0] == ($time_gio - 1))
+                                        @if(explode(':',$rq->thoi_gian)[1] > $time_phut)
+                                            <p type="hidden" value="{{ $dem = 0 }}"></p>
+                                        @endif 
+                                    @endif
+                                @endif
+                            @endforeach
+
+                            @if( $dem == 1 )
+                            <li>Trạng thái : Có thể đặt lịch </li>
+                            @else
+                            <li>Trạng thái : Không thể đặt lịch </li>
+                            @endif
+                        @if($test->ma_cach_thuc == 'BT')
+                        <li>Chế độ : Bình thường</li>
+                        @else
+                        <li>Chế độ : Chuyên gia</li>
+                        @endif
+                    </ul>
+                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                </div>
+                @endforeach
         @endif
     </div>
     </div>
