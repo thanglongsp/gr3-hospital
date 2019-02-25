@@ -120,7 +120,14 @@
                             <li>Chế độ : Chuyên gia</li>
                             @endif
                         </ul>
-                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -162,7 +169,14 @@
                             <li>Chế độ : Chuyên gia</li>
                             @endif
                         </ul>
-                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -208,7 +222,14 @@
                             <li>Chế độ : Chuyên gia</li>
                             @endif
                         </ul>
-                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -250,7 +271,14 @@
                             <li>Chế độ : Chuyên gia</li>
                             @endif
                         </ul>
-                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -289,7 +317,14 @@
                             <li>Chế độ : Chuyên gia</li>
                             @endif
                         </ul>
-                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -333,7 +368,14 @@
                             <li>Chế độ : Chuyên gia</li>
                             @endif
                         </ul>
-                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -373,7 +415,14 @@
                             <li>Chế độ : Chuyên gia</li>
                             @endif
                         </ul>
-                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -417,7 +466,14 @@
                             <li>Chế độ : Chuyên gia</li>
                             @endif
                         </ul>
-                        <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -461,7 +517,14 @@
                         <li>Chế độ : Chuyên gia</li>
                         @endif
                     </ul>
-                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                 </div>
                 @endforeach
                 {{ $chuyenmons_a->links() }}
@@ -504,7 +567,14 @@
                         <li>Chế độ : Chuyên gia</li>
                         @endif
                     </ul>
-                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                 </div>
                 @endforeach
                 {{ $chuyenmons_a->links() }}
@@ -547,7 +617,14 @@
                         <li>Chế độ : Chuyên gia</li>
                         @endif
                     </ul>
-                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                 </div>
                 @endforeach
         @endif
@@ -589,7 +666,14 @@
                         <li>Chế độ : Chuyên gia</li>
                         @endif
                     </ul>
-                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                 </div>
                 @endforeach
                 {{ $chuyenmons_b->links() }}
@@ -632,7 +716,14 @@
                         <li>Chế độ : Chuyên gia</li>
                         @endif
                     </ul>
-                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                 </div>
                 @endforeach
                 {{ $chuyenmons_b->links() }}
@@ -675,7 +766,14 @@
                         <li>Chế độ : Chuyên gia</li>
                         @endif
                     </ul>
-                    <p> <a href="#" style="margin-left:80%;">Chi tiết</a>
+                    <div class="row">
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-3">
+                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                            </div>
+                        </div>
                 </div>
                 @endforeach
         @endif
