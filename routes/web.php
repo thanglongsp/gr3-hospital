@@ -35,6 +35,11 @@ Route::post('/users/{id}/update/picture',[
     'uses'=>'UserController@updateUserPicture'
 ]);
 
+Route::post('/users/datlich',[
+    'as'=>'users.datlich',
+    'uses'=>'HomeController@postDatlich'
+]);
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 // Forum

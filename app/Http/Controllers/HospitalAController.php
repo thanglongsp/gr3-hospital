@@ -10,12 +10,10 @@ class HospitalAController extends Controller
 {
     //
     public function table(){
-        Schema::connection('mysqla')->create('chuyengias', function (Blueprint $table) {
+        Schema::connection('mysqlb')->create('motas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ma_chuyen_gia');
-            $table->string('ma_bs');
-            $table->string('ma_khoa');
-            $table->string('ma_chuyen_mon');
+            $table->string('ma_quy_trinh');
+            $table->string('mo_ta');
             $table->timestamps();
         });
     }

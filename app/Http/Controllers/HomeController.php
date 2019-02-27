@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -152,11 +154,73 @@ class HomeController extends Controller
             $time = "00:00:00";
         if($date == 'ALL')
             $date = "YYYY:MM:DD";
+        $input_time = $time;
         $time = explode(':',$time);
         $time_gio = $time[0];
         $time_phut = $time[1];
+
+        $motas_a = DB::connection('mysqla')->table('motas')
+                ->join('doctors', 'motas.bs_phu_trach', '=', 'doctors.ma_bs')
+                ->get();
+        $motas_b = DB::connection('mysqlb')->table('motas')
+                ->join('doctors', 'motas.bs_phu_trach', '=', 'doctors.ma_bs')
+                ->get();
         
-        return view('home', compact('chuyenmons_a', 'chuyenmons_b', 'chuyenmons', 'ma_chuyen_mon', 'bv', 'khoa', 'date', 'requests_a', 'requests_b', 'time_gio', 'time_phut', 'search_info'));
+        return view('home', compact('chuyenmons_a', 'chuyenmons_b', 'chuyenmons', 'ma_chuyen_mon', 'bv', 'khoa', 'date', 'requests_a', 'requests_b', 'input_time', 'time_gio', 'time_phut', 'search_info', 'motas_a', 'motas_b'));
     }
     
+    public function postDatlich(Request $req)
+    {
+        if( $req->benh_vien == 'A' )
+        {
+            $count_a = DB::connection('mysqla')
+                    ->table('requests')
+                    ->where('trang_thai', 3)
+                    ->count();
+            
+            if($count_a < 10)
+                    $ma_request = "RQ00".($count_a + 1);
+            else    
+                $ma_request = "RQ0".($count_a + 1);
+            
+            DB::connection('mysqla')->table('requests')->insert([
+                // dd($req),
+            'ma_request' => $ma_request,
+            'user_id'   => Auth::user()->id,
+            'ngay_thu'  => $req->ngay,
+            'thoi_gian' => $req->time,
+            'trang_thai' => 3,
+            'ma_khoa' => $req->khoa,
+            'ma_chuyen_mon' => $req->chuyen_mon,
+            'cach_thuc' => $req->cach_thuc
+            ]);
+        }
+
+        if( $req->benh_vien == 'B' )
+        {
+            $count_a = DB::connection('mysqlb')
+                    ->table('requests')
+                    ->where('trang_thai', 3)
+                    ->count();
+            
+            if($count_a < 10)
+                    $ma_request = "RQ00".($count_a + 1);
+            else    
+                $ma_request = "RQ0".($count_a + 1);
+            
+            DB::connection('mysqlb')->table('requests')->insert([
+                // dd($req),
+            'ma_request' => $ma_request,
+            'user_id'   => Auth::user()->id,
+            'ngay_thu'  => $req->ngay,
+            'thoi_gian' => $req->time,
+            'trang_thai' => 3,
+            'ma_khoa' => $req->khoa,
+            'ma_chuyen_mon' => $req->chuyen_mon,
+            'cach_thuc' => $req->cach_thuc
+            ]);
+        }
+    return redirect()->route('home', ['ALL','ALL','ALL','ALL','ALL']);
+    
+    }
 }
