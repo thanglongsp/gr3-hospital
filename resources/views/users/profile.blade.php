@@ -82,6 +82,7 @@
                     <!-- end modal -->
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Thông tin cá nhân')">Thông tin cá nhân</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Hồ sơ bệnh án')">Hồ sơ bệnh án</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Đặt lịch khám')">Đặt lịch khám</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bài viết yêu thích')">Bài viết yêu thích</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bài viết của tôi')">Bài viết của tôi</button>
             </div>
@@ -89,7 +90,7 @@
         <div class="col-sm-8">
             <div style="margin-left:-200px">
                 <div id="Thông tin cá nhân" class="w3-container city" style="display:none">
-                    <table style="width:100%">
+                    <table style="width:100%; margin-top: 60px;">
                         <tr>
                             <th>Biệt danh  </th>
                             <td>{{ Auth::user()->name }}<td>
@@ -257,15 +258,77 @@
                         <p> <a href="#" style="margin-left:90%; color: blue;">chi tiết</a>
                     </div>
                 </div>
+                <div id="Đặt lịch khám" class="w3-container city" style="display:none">
+                    <div class="ex1">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <th>Bệnh viện</th>
+                                    <th>Ngày đặt</th>
+                                    <th>Giờ đặt</th>
+                                    <th>Khoa</th>
+                                    <th>Chuyên môn</th>
+                                    <th>Cách thức</th>
+                                    <th>Trạng thái</th>
+                                    <th></th>
+                                </tr>
+                                @if($requests_a != '')
+                                    @foreach($requests_a->sortBy('ngay_thu') as $req)
+                                    <tr>
+                                        <td>Bệnh viện A</td>
+                                        <td>{{ $req->ngay_thu }}</td>
+                                        <td>{{ $req->thoi_gian }}</td>
+                                        <td>{{ $req->ten_khoa }}</td>
+                                        <td>{{ $req->ten_chuyen_mon }}</td>
+                                        <td>{{ $req->cach_thuc }}</td>
+                                        <td>Đã đặt </td>
+                                        <td><button style="background-color: Transparent;border: none;color:red;" name="A" id="{{ $req->ma_request }}" onclick="cancelDatlich(this.id, this.name)">Hủy lịch</button> </td>
+                                    </tr>
+                                    @endforeach   
+                                @endif
+                                @if($requests_b != '')
+                                    @foreach($requests_b->sortBy('ngay_thu') as $req)
+                                    <tr>
+                                        <td>Bệnh viện B</td>
+                                        <td>{{ $req->ngay_thu }}</td>
+                                        <td>{{ $req->thoi_gian }}</td>
+                                        <td>{{ $req->ten_khoa }}</td>
+                                        <td>{{ $req->ten_chuyen_mon }}</td>
+                                        <td>{{ $req->cach_thuc }}</td>
+                                        <td>Đã đặt </td>
+                                        <td><button style="background-color: Transparent;border: none; color:red;" name="B" id="{{ $req->ma_request }}" onclick="cancelDatlich(this.id, this.name)">Hủy lịch</button> </td>                                                                                
+                                    </tr>
+                                    @endforeach   
+                                @endif                              
+                            </table>
+                    <br>
+                    
+                    </div>
+                </div>
 
                 <!-- display favarite post -->
                 <div id="Bài viết yêu thích" class="w3-container city" style="display:none">
                     <div class="ex1">
+                    <br>
                     @foreach($likes->sortByDESC('created_at') as $like)
-                        <h2>Tiêu đề : {{ $like->post['title'] }}</h2>
-                        <p>Thời gian : {{ $like->post['created_at'] }}</p> 
-                        <p>Người đăng : {{ $like->post->user['name']}}</p>
-                        <p> <a href="#" style="margin-left:90%; color: blue;"><u>chi tiết</u></a>
+                        <table style="width: 100%;">
+                        <tr>
+                            <th>Tiêu đề </th>
+                            <td>{{ $like->post['title'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Thời gian</th>
+                            <td>{{ $like->post['created_at'] }}</td>
+                        </tr>
+                        <tr> 
+                            <th>Người đăng</th>
+                            <td>{{ $like->post->user['name']}}</td>
+                        </tr>
+                        <tr>
+                            <th><a href="#" style="color: blue;"><u>chi tiết</u></a></th>  
+                            <td></td>
+                        </tr>
+                        </table>
+                        <br>
                     @endforeach
                     </div>
                 </div>
@@ -290,3 +353,27 @@
 
 </body>
 </html>
+
+<script>
+function cancelDatlich(clicked_id, clicked_name){
+        if(confirm("Bạn đã chắc chắn hủy ?")){
+            var url = "{{route('users.cancelDatlich')}}";
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: {
+                    "_token"        : '{{csrf_token()}}',
+                    "benh_vien"        : clicked_name,
+                    "ma_request"       : clicked_id,
+                },
+                success: function(data) {
+                    window.location.reload();
+                },
+                error: function(data) {
+                    console.log(data);
+                    alert('error!');
+                },
+            });
+        }
+}
+</script>

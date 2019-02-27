@@ -40,6 +40,11 @@ Route::post('/users/datlich',[
     'uses'=>'HomeController@postDatlich'
 ]);
 
+Route::post('/users/cancel/datlich', [
+    'as'=>'users.cancelDatlich',
+    'uses'=>'UserController@cancelDatlich'
+]);
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 // Forum
