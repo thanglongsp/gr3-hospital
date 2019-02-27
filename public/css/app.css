@@ -185,7 +185,7 @@ div.condition {
   /* border-radius: 3%; */
 }
 
-td, #customers th {
+td,th {
   border: 1px solid #ddd;
   padding: 8px;
 }
