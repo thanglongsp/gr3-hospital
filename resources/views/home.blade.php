@@ -122,13 +122,110 @@
                         </ul>
                         <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#" data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#"  data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                     </div>
+                    <!-- Modal Đặt lịch -->
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Đặt lịch </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                        <div class="col-sm-12">
+                                            <input type="hidden" value="A" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> A </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                     @endforeach
                 </div>
 
@@ -171,13 +268,110 @@
                         </ul>
                         <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <p> <a href="#" data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#"  data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>                                
                             </div>
                         </div>
                     </div>
+                    <!-- Modal Đặt lịch -->
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="B" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> A </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                     @endforeach
                 </div>
                 {{ $chuyenmons_a->links() }}
@@ -224,13 +418,110 @@
                         </ul>
                         <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <p> <a href="#" data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                     </div>
+                    <!-- Modal Đặt lịch -->
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="A" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> A </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                     @endforeach
                 </div>
 
@@ -273,13 +564,110 @@
                         </ul>
                         <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#" data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                     </div>
+                    <!-- Modal Đặt lịch -->
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="B" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> B </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                     @endforeach
                 </div>
             </div>
@@ -319,13 +707,110 @@
                         </ul>
                         <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#" data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                     </div>
+                    <!-- Modal Đặt lịch -->
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="A" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> A </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                     @endforeach
                 </div>
 
@@ -370,13 +855,110 @@
                         </ul>
                         <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#" data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                     </div>
+                    <!-- Modal Đặt lịch -->
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="B" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> B </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                     @endforeach
                 </div>
             {{ $chuyenmons_a->links() }}
@@ -417,13 +999,110 @@
                         </ul>
                         <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#"  data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                     </div>
+                    <!-- Modal Đặt lịch -->
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="A" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> A </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                     @endforeach
                 </div>
 
@@ -468,13 +1147,110 @@
                         </ul>
                         <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#"  data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                     </div>
+                    <!-- Modal Đặt lịch -->
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="B" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> B </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                     @endforeach
                 </div>
             </div>
@@ -519,13 +1295,110 @@
                     </ul>
                     <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#"  data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                 </div>
+                <!-- Modal Đặt lịch -->
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="A" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> A </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                 @endforeach
                 {{ $chuyenmons_a->links() }}
         @endif
@@ -569,13 +1442,110 @@
                     </ul>
                     <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#" data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                 </div>
+                <!-- Modal Đặt lịch -->
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="A" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> A </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                 @endforeach
                 {{ $chuyenmons_a->links() }}
         @endif
@@ -619,13 +1589,111 @@
                     </ul>
                     <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#" data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                 </div>
+                <!-- Modal Đặt lịch -->
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="A" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> A </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>e" value="{{ $input_time }}" name="time"/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                 @endforeach
         @endif
         @if($bv == "B" && $khoa != "ALL" && $ma_chuyen_mon == 'ALL')
@@ -633,7 +1701,7 @@
                 <p type="hidden" value="{{ $dem = 1 }}">                
                 <div class="myDivResultChild">
                     <ul>
-                        <li>Bệnh viện : A </li>
+                        <li>Bệnh viện : B </li>
                         <li>Tên khoa : {{ $test->ten_khoa }} </li>
                         <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
                         <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
@@ -668,13 +1736,110 @@
                     </ul>
                     <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#" data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                 </div>
+                <!-- Modal Đặt lịch -->
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="B" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> B </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                 @endforeach
                 {{ $chuyenmons_b->links() }}
         @endif
@@ -683,7 +1848,7 @@
                 <p type="hidden" value="{{ $dem = 1 }}">                
                 <div class="myDivResultChild">
                     <ul>
-                        <li>Bệnh viện : A </li>
+                        <li>Bệnh viện : B </li>
                         <li>Tên khoa : {{ $test->ten_khoa }} </li>
                         <li>Tên chuyên môn : {{ $test->ten_chuyen_mon }}
                         <li>Tổng thời gian : {{ $test->tg_tren_ca }} phút</li>
@@ -718,13 +1883,110 @@
                     </ul>
                     <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#" data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                 </div>
+                <!-- Modal Đặt lịch -->
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="B" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> B </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                 @endforeach
                 {{ $chuyenmons_b->links() }}
         @endif
@@ -768,13 +2030,110 @@
                     </ul>
                     <div class="row">
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:40%;">Đặt lịch</a>
+                                <a href="#" data-toggle="modal" data-target="#dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:40%;">Đặt lịch</a>
                             </div>
                             <div class="col-sm-6 col-xs-3">
-                                <p> <a href="#" style="margin-left:50%;">Chi tiết</a>
+                                <a href="#" data-toggle="modal" data-target="#{{ $test->ma_chuyen_mon.$test->ma_cach_thuc}}" style="margin-left:50%;">Chi tiết</a>
                             </div>
                         </div>
                 </div>
+                <!-- Modal Đặt lịch -->
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                    <form method="post" action="{{ route('users.datlich') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                            <input type="hidden" value="B" name="benh_vien" >
+                                            <input type="hidden" value="{{ $test->ma_khoa }}" name="khoa" >
+                                            <input type="hidden" value="{{ $test->ma_chuyen_mon }}" name="chuyen_mon">
+                                            <input type="hidden" value="{{ $test->ma_cach_thuc }}" name="cach_thuc">
+                                            <table style="width:100%;">
+                                            <tr>
+                                                <th> Bệnh viện </th>
+                                                <td> B </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên khoa</th>
+                                                <td>{{ $test->ten_khoa }} </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên chuyên môn</th>
+                                                <td>{{ $test->ten_chuyen_mon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ngày</th>
+                                                <td><input type="date" value="{{ $date }}" name="ngay"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giờ</th>
+                                                <td><input type="time" value="{{ $input_time }}" name="time"/></td>
+                                            </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Đặt lịch</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Chi tiết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                        <table style="width:100%">
+                                        <tr>
+                                            <th style="width:5%">Phòng </th>
+                                            <td style="width:10%">Thời gian </td>
+                                            <td style="width:15%;" >Bác sĩ </td>
+                                            <td style="width:10%;" >Chức danh </td>
+                                            <td style="width:70%;" >Mô tả </td>
+                                        </tr>
+                                        @foreach(explode(',',$test->quy_trinh) as $t)
+                                        <tr>
+                                            <th>{{ $t }} </th>
+                                            @foreach( $motas_a as $mta )
+                                            @if( $t == $mta->ma_quy_trinh )
+                                            <td>{{ $mta->thoi_gian }} Phút </td>
+                                            <td>{{ $mta->hoten_bs }} </td>
+                                            <td>{{ $mta->chuc_danh }} </td>
+                                            <td>{{ $mta->mo_ta }} </td>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                 @endforeach
         @endif
     </div>
