@@ -130,7 +130,7 @@
                         </div>
                     </div>
                     <!-- Modal Đặt lịch -->
-                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -182,7 +182,7 @@
                     </div>
                     <!-- end modal -->
                     <!-- Modal -->
-                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;" >
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -276,7 +276,7 @@
                         </div>
                     </div>
                     <!-- Modal Đặt lịch -->
-                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -328,7 +328,7 @@
                     </div>
                     <!-- end modal -->
                     <!-- Modal -->
-                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -426,7 +426,7 @@
                         </div>
                     </div>
                     <!-- Modal Đặt lịch -->
-                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -478,7 +478,7 @@
                     </div>
                     <!-- end modal -->
                     <!-- Modal -->
-                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -572,7 +572,7 @@
                         </div>
                     </div>
                     <!-- Modal Đặt lịch -->
-                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -624,7 +624,7 @@
                     </div>
                     <!-- end modal -->
                     <!-- Modal -->
-                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -715,7 +715,7 @@
                         </div>
                     </div>
                     <!-- Modal Đặt lịch -->
-                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -767,7 +767,7 @@
                     </div>
                     <!-- end modal -->
                     <!-- Modal -->
-                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -863,7 +863,7 @@
                         </div>
                     </div>
                     <!-- Modal Đặt lịch -->
-                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -915,7 +915,7 @@
                     </div>
                     <!-- end modal -->
                     <!-- Modal -->
-                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1007,7 +1007,7 @@
                         </div>
                     </div>
                     <!-- Modal Đặt lịch -->
-                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1059,7 +1059,7 @@
                     </div>
                     <!-- end modal -->
                     <!-- Modal -->
-                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1155,7 +1155,7 @@
                         </div>
                     </div>
                     <!-- Modal Đặt lịch -->
-                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1207,7 +1207,7 @@
                     </div>
                     <!-- end modal -->
                     <!-- Modal -->
-                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                    <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1303,7 +1303,7 @@
                         </div>
                 </div>
                 <!-- Modal Đặt lịch -->
-                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1355,7 +1355,7 @@
                     </div>
                     <!-- end modal -->
                 <!-- Modal -->
-                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1450,7 +1450,7 @@
                         </div>
                 </div>
                 <!-- Modal Đặt lịch -->
-                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1502,7 +1502,7 @@
                     </div>
                     <!-- end modal -->
                 <!-- Modal -->
-                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1597,7 +1597,7 @@
                         </div>
                 </div>
                 <!-- Modal Đặt lịch -->
-                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1650,7 +1650,7 @@
                     </div>
                     <!-- end modal -->
                 <!-- Modal -->
-                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1744,7 +1744,7 @@
                         </div>
                 </div>
                 <!-- Modal Đặt lịch -->
-                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1796,7 +1796,7 @@
                     </div>
                     <!-- end modal -->
                 <!-- Modal -->
-                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1891,7 +1891,7 @@
                         </div>
                 </div>
                 <!-- Modal Đặt lịch -->
-                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -1943,7 +1943,7 @@
                     </div>
                     <!-- end modal -->
                 <!-- Modal -->
-                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -2038,7 +2038,7 @@
                         </div>
                 </div>
                 <!-- Modal Đặt lịch -->
-                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="dat_lich{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">
@@ -2090,7 +2090,7 @@
                     </div>
                     <!-- end modal -->
                 <!-- Modal -->
-                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog">
+                <div class="modal fade" id="{{ $test->ma_chuyen_mon.$test->ma_cach_thuc }}" role="dialog" style="margin-left: 100px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
                             <div class="modal-content">

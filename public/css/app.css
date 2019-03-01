@@ -148,7 +148,7 @@ div.condition {
 
 .content {
   margin-top: 80px;
-  background:#dbf308;
+  background:#978ea7;
   height: 600px;
   overflow: scroll;
   /* border: 2px solid #978ea7; */
@@ -165,7 +165,7 @@ div.condition {
   text-align: center;
   height:50px;
   width:100%;
-  background: #f04c00;
+  background: #978ea7;
   border-radius: 2%;
 }
 
@@ -173,7 +173,7 @@ div.condition {
   text-align: left;
   height:auto;
   width:100%;
-  background: #0aeb0a;
+  background: #d6dbdf;
   /* border-radius: 3%; */
 }
 
@@ -181,7 +181,7 @@ div.condition {
   text-align: left;
   height:auto;
   width:100%;
-  background: #23f090;
+  background: #d6dbdf;
   /* border-radius: 3%; */
 }
 
