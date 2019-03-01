@@ -4,7 +4,7 @@
 <div class="col-sm-12" style="margin-top: 50px; margin-left:60px;">
     <div class="col-sm-1"></div>
     <!-- Link left -->
-    <div class="col-sm-2" style="background-color: red;">
+    <div class="col-sm-2" style="background-color: #978ea7;">
         <div class="divForum">
             <div class="divForumChild"> 
                 <br>
@@ -117,7 +117,7 @@
                                 <a href="#" data-toggle="modal" data-target="#picture_comment_{{ $post->id }}" ><span style="margin-top:10px; font-size: 25px;" class="glyphicon glyphicon-camera"></span></a>
                             </div>
                             <!-- Modal post or catch picture-->
-                            <div class="modal fade" id="picture_comment_{{ $post->id }}" role="dialog">
+                            <div class="modal fade" id="picture_comment_{{ $post->id }}" role="dialog" style="margin-left: 100px;">
                                 <div class="modal-dialog">
                                 <!-- Modal content-->
                                     <div class="modal-content">
@@ -241,7 +241,7 @@
                                     <button class="btn btn-primary" type="submit" style="margin-left:-40px;">Trả lời</button>
                                 </div>
                                 <!-- Modal post or catch picture-->
-                                <div class="modal fade" id="picture_reply_{{ $cmt->id }}" role="dialog">
+                                <div class="modal fade" id="picture_reply_{{ $cmt->id }}" role="dialog" style="margin-left: 100px;">
                                     <div class="modal-dialog">
                                     <!-- Modal content-->
                                         <div class="modal-content">
@@ -343,7 +343,7 @@
                                 </div>
                             </div>
                             <!-- Modal edit reply -->
-                            <div id="modalEditReply{{ $cmt_reply->id }}" class="modal fade" role="dialog">
+                            <div id="modalEditReply{{ $cmt_reply->id }}" class="modal fade" role="dialog" style="margin-left: 100px;">
                                 <div class="modal-dialog">
                                 <!-- Modal content-->
                                     <form method="post" action="{{ route('comments.edit') }}">
@@ -372,7 +372,7 @@
                             <br>
                         @endif
                         <!-- Modal edit comment -->
-                        <div id="modalEditComment{{ $cmt->id }}" class="modal fade" role="dialog">
+                        <div id="modalEditComment{{ $cmt->id }}" class="modal fade" role="dialog" style="margin-left: 100px;">
                             <div class="modal-dialog">
                             <!-- Modal content-->
                                 <form method="post" action="{{ route('comments.edit') }}">
@@ -405,7 +405,7 @@
         </div>
     </div>
     <!-- Link right -->
-    <div class="col-sm-2" style="background-color: red;">
+    <div class="col-sm-2" style="background-color: #978ea7;">
         <div class="divForum">
             <div class="divForumChild"> 
                 <br>
@@ -433,7 +433,7 @@
     <!-- end link right -->
 </div>
 <!-- Modal -->
-<div class="modal fade" id="myModalMyPost" role="dialog">
+<div class="modal fade" id="myModalMyPost" role="dialog" style="margin-left: 100px;">
     <div class="modal-dialog">
     <!-- Modal content-->
         <div class="modal-content">
@@ -475,7 +475,7 @@
 </div>
 <!-- end modal -->
 <!-- Modal came computer -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade" role="dialog" style="margin-left: 100px;">
     <div class="modal-dialog">
     <!-- Modal content-->
         <div class="modal-content">

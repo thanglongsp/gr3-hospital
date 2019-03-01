@@ -90,29 +90,29 @@
         <div class="col-sm-8">
             <div style="margin-left:-200px">
                 <div id="Thông tin cá nhân" class="w3-container city" style="display:none">
-                    <table style="width:100%; margin-top: 60px;">
+                    <table style="width:100%; margin-top: 0px;">
                         <tr>
-                            <th>Biệt danh  </th>
+                            <th style="height: 40px;">Biệt danh  </th>
                             <td>{{ Auth::user()->name }}<td>
                         </tr> 
                         <tr>
-                            <th>Họ tên đầy đủ  </th>
+                            <th style="height: 40px;">Họ tên đầy đủ  </th>
                             <td>{{ Auth::user()->full_name }}<td>
                         </tr>
                         <tr>
-                            <th>Ngày sinh  </th>
+                            <th style="height: 40px;">Ngày sinh  </th>
                             <td>{{ Auth::user()->birth_day }}<td>
                         </tr> 
                         <tr>
-                            <th>Địa chỉ hiện tại  </th>
+                            <th style="height: 40px;">Địa chỉ hiện tại  </th>
                             <td>{{ Auth::user()->address }}<td>
                         </tr> 
                         <tr>
-                            <th>Công việc  </th>
-                            <td>{{ Auth::user()->name }}<td>
+                            <th style="height: 40px;">Công việc  </th>
+                            <td>{{ Auth::user()->work }}<td>
                         </tr> 
                         <tr>
-                            <th>Giới tính  </th>
+                            <th style="height: 40px;">Giới tính  </th>
                             @if( Auth::user()->gender == 1 )
                             <td>Nam<td>
                             @else
@@ -120,11 +120,11 @@
                             @endif
                         </tr>
                         <tr>
-                            <th>Số điện thoại  </th>
+                            <th style="height: 40px;">Số điện thoại  </th>
                             <td>{{ Auth::user()->phone_number }}<td>
                         </tr>
                         <tr>
-                            <th>Email </th>
+                            <th style="height: 40px;">Email </th>
                             <td>{{ Auth::user()->email }}<td>
                         </tr>
                     </table>
@@ -261,7 +261,7 @@
                 <div id="Đặt lịch khám" class="w3-container city" style="display:none">
                     <div class="ex1">
                             <table style="width: 100%;">
-                                <tr>
+                                <tr style="height: 30px;">
                                     <th>Bệnh viện</th>
                                     <th>Ngày đặt</th>
                                     <th>Giờ đặt</th>
@@ -273,7 +273,7 @@
                                 </tr>
                                 @if($requests_a != '')
                                     @foreach($requests_a->sortBy('ngay_thu') as $req)
-                                    <tr>
+                                    <tr style="height: 30px;">
                                         <td>Bệnh viện A</td>
                                         <td>{{ $req->ngay_thu }}</td>
                                         <td>{{ $req->thoi_gian }}</td>
@@ -287,7 +287,7 @@
                                 @endif
                                 @if($requests_b != '')
                                     @foreach($requests_b->sortBy('ngay_thu') as $req)
-                                    <tr>
+                                    <tr style="height: 30px;">
                                         <td>Bệnh viện B</td>
                                         <td>{{ $req->ngay_thu }}</td>
                                         <td>{{ $req->thoi_gian }}</td>
@@ -311,19 +311,19 @@
                     <br>
                     @foreach($likes->sortByDESC('created_at') as $like)
                         <table style="width: 100%;">
-                        <tr>
+                        <tr style="height: 30px;">
                             <th>Tiêu đề </th>
                             <td>{{ $like->post['title'] }}</td>
                         </tr>
-                        <tr>
+                        <tr style="height: 30px;">
                             <th>Thời gian</th>
                             <td>{{ $like->post['created_at'] }}</td>
                         </tr>
-                        <tr> 
+                        <tr style="height: 30px;"> 
                             <th>Người đăng</th>
                             <td>{{ $like->post->user['name']}}</td>
                         </tr>
-                        <tr>
+                        <tr style="height: 30px;">
                             <th><a href="#" style="color: blue;"><u>chi tiết</u></a></th>  
                             <td></td>
                         </tr>
