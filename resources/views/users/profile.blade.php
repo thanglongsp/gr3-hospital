@@ -80,19 +80,19 @@
                             </div>
                         </div
                     <!-- end modal -->
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Thông tin cá nhân')">Thông tin cá nhân</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Thông tin cá nhân')">Thông tin cá nhân</button>   
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Yêu cầu khám bệnh')">Yêu cầu khám bệnh</button>                
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Trạng thái các khoa')">Trạng thái các khoa</button>                
-                @if(Auth::user()->role != 'A' && Auth::user()->role != 'B')
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Hồ sơ bệnh án')">Hồ sơ bệnh án</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Đặt lịch khám')">Đặt lịch khám</button>
-                @endif
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bài viết yêu thích')">Bài viết yêu thích</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bài viết của tôi')">Bài viết của tôi</button>
             </div>
         </div>
         <div class="col-sm-8">
             <div style="margin-left:-200px">
+
+                <!-- Hien thi thong tin ca nhan -->
                 <div id="Thông tin cá nhân" class="w3-container city" style="display:none">
                     <table style="width:100%; margin-top: 0px;">
                         <tr>
@@ -244,7 +244,9 @@
                         </div
                     <!-- end modal -->
                 </div>
-                @if(Auth::user()->role != 'A' && Auth::user()->role != 'B')
+                <!-- Ket thuc hien thi thong tin ca nhan -->
+
+                <!-- Hien thi ho so benh an -->
                 <div id="Hồ sơ bệnh án" class="w3-container city" style="display:none">
                     <div class="ex1">
                         <h2>Ngày xxx</h2>
@@ -263,6 +265,9 @@
                         <p> <a href="#" style="margin-left:90%; color: blue;">chi tiết</a>
                     </div>
                 </div>
+                <!-- Ket thuc hien thi hs benh an  -->
+
+                <!-- Hien thi dat lich kham -->
                 <div id="Đặt lịch khám" class="w3-container city" style="display:none">
                     <div class="ex1">
                             <table style="width: 100%;">
@@ -305,18 +310,20 @@
                                     @endforeach   
                                 @endif                              
                             </table>
-                    <br>
-                    
                     </div>
                 </div>
-                @endif
+                <!-- Ket thuc hien thi dat lich kham -->
+
                 <!-- Hiển thị yêu cầu khám -->
                 @if(Auth::user()->role == 'A')
                 <div id="Yêu cầu khám bệnh" class="w3-container city" style="display:none">
-                <center><input type="text" id="myInputA" onkeyup="myFunctionA()" placeholder="Tìm kiếm với chuyên môn" style="width: 200px;"></center>
-                <br>
+                    <input type="text" id="myInputATND" onkeyup="myFunctionATND()" placeholder="Tìm kiếm Tên người dùng" style="width: 298px;">                
+                    <input type="text" id="myInputATK" onkeyup="myFunctionATK()" placeholder="Tìm kiếm Tên khoa" style="width: 298px;">                
+                    <input type="text" id="myInputATCM" onkeyup="myFunctionATCM()" placeholder="Tìm kiếm Tên chuyên môn" style="width: 298px;">  
+                    <br>
+                    <br>
                     <div class="ex1">
-                    <table style="width: 100%;" id="myTableA">
+                        <table style="width: 100%;" id="myTableA">
                                 <tr style="height: 30px;">
                                     <th>Tên người dùng </th>
                                     <th>Ngày đặt</th>
@@ -345,14 +352,18 @@
                                     </tr>
                                     @endforeach   
                                 @endif
-                    </table>
+                        </table>
                     </div>
                 </div>
                 @endif
+
                 @if(Auth::user()->role == 'B')
                 <div id="Yêu cầu khám bệnh" class="w3-container city" style="display:none">
-                <center><input type="text" id="myInputB" onkeyup="myFunctionB()" placeholder="Tìm kiếm với chuyên môn" style="width: 200px;"></center>
-                <br>
+                    <input type="text" id="myInputBTND" onkeyup="myFunctionBTND()" placeholder="Tìm kiếm Tên người dùng" style="width: 298px;">                
+                    <input type="text" id="myInputBTK" onkeyup="myFunctionBTK()" placeholder="Tìm kiếm Tên khoa" style="width: 298px;">                
+                    <input type="text" id="myInputBTCM" onkeyup="myFunctionBTCM()" placeholder="Tìm kiếm Tên chuyên môn" style="width: 298px;">  
+                    <br>
+                    <br>
                     <div class="ex1">
                     <table style="width: 100%;" id="myTableB">
                                 <tr style="height: 30px;">
@@ -388,9 +399,65 @@
                 </div>
                 @endif
                 <!-- end hiển thị Yêu cầu khám -->
+
+                <!-- Hien thi trang thai cac khoa -->
+                @if(Auth::user()->role == 'A' || Auth::user()->role == 'B')
                 <div id="Trạng thái các khoa" class="w3-container city" style="display:none">
-                
+                    <input type="text" id="myInputCMK" onkeyup="myFunctionCMK()" placeholder="Tìm kiếm Mã khoa" style="width: 220px;">                
+                    <input type="text" id="myInputCMCM" onkeyup="myFunctionCMCM()" placeholder="Tìm kiếm Mã chuyên môn" style="width: 220px;">                
+                    <input type="text" id="myInputCTK" onkeyup="myFunctionCTK()" placeholder="Tìm kiếm Tên khoa" style="width: 220px;">                
+                    <input type="text" id="myInputCTCM" onkeyup="myFunctionCTCM()" placeholder="Tìm kiếm Tên chuyên môn" style="width: 220px;">  
+                    <br>            
+                    <br>
+                    <div class="ex1">
+                    <table style="width: 100%;" id="myTableC">                    
+                        <tr style="height: 30px;">
+                            <th>Mã khoa</th>
+                            <th>Tên khoa</th>
+                            <th>Mã chuyên môn</th>
+                            <th>Tên chuyên môn</th>
+                            <th>Số lượng chờ</th>
+                        </tr>
+                    @if(Auth::user()->role == 'A')
+                    @foreach($chuyenmons_a as $cm )
+                        <tr style="height: 30px;">
+                            <td>{{ $cm->ma_khoa }}</td>
+                            <td>{{ $cm->ten_khoa }}</td>
+                            <td>{{ $cm->ma_chuyen_mon }}</td>
+                            <td>{{ $cm->ten_chuyen_mon }}</td>
+                            <input type="hidden" value="{{ $dem = 0 }}"/>
+                            @foreach($requests_a_all as $req)
+                            @if($req->ma_chuyen_mon == $cm->ma_chuyen_mon)
+                            <input type="hidden" value="{{ $dem = $dem + 1 }}"/>
+                            @endif
+                            @endforeach
+                            <td>{{ $dem }}</td>
+                        </tr>                    
+                    @endforeach
+                    @endif
+                    @if(Auth::user()->role == 'B')
+                    @foreach($chuyenmons_b as $cm )
+                        <tr style="height: 30px;">
+                            <td>{{ $cm->ma_khoa }}</td>
+                            <td>{{ $cm->ten_khoa }}</td>
+                            <td>{{ $cm->ma_chuyen_mon }}</td>
+                            <td>{{ $cm->ten_chuyen_mon }}</td>
+                            <input type="hidden" value="{{ $dem = 0 }}"/>
+                            @foreach($requests_a_all as $req)
+                            @if($req->ma_chuyen_mon == $cm->ma_chuyen_mon)
+                            <input type="hidden" value="{{ $dem = $dem + 1 }}"/>
+                            @endif
+                            @endforeach
+                            <td>{{ $dem }}</td>
+                        </tr>                    
+                    @endforeach
+                    @endif
+                    </table>
+                    </div>
                 </div>
+                @endif
+                <!-- End hien thi trang thai cac khoa -->
+
                 <!-- display favarite post -->
                 <div id="Bài viết yêu thích" class="w3-container city" style="display:none">
                     <div class="ex1">
@@ -464,9 +531,45 @@ function cancelDatlich(clicked_id, clicked_name){
 }
 </script>
 <script>
-function myFunctionA() {
+function myFunctionATND() {
   var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInputA");
+  input = document.getElementById("myInputATND");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableA");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+function myFunctionATK() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputATK");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableA");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+function myFunctionATCM() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputATCM");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTableA");
   tr = table.getElementsByTagName("tr");
@@ -484,14 +587,130 @@ function myFunctionA() {
 }
 </script>
 <script>
-function myFunctionB() {
+function myFunctionBTND() {
   var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInputB");
+  input = document.getElementById("myInputBTND");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableB");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+function myFunctionBTK() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputBTK");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableB");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+function myFunctionBTCM() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputBTCM");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTableB");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+<script>
+function myFunctionCMK() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputCMK");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableC");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+<script>
+function myFunctionCTK() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputCTK");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableC");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+<script>
+function myFunctionCMCM() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputCMCM");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableC");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+<script>
+function myFunctionCTCM() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputCTCM");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableC");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
