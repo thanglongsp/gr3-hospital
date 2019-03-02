@@ -62,8 +62,20 @@ class UserController extends Controller
                 ->join('chuyenmons', 'requests.ma_chuyen_mon', '=', 'chuyenmons.ma_chuyen_mon')
                 ->where([['requests.user_id', Auth::user()->id],['requests.trang_thai', 3]])
                 ->get();
-
-        return view('users.profile', compact('user','likes', 'posts', 'requests_a', 'requests_b'));
+        $requests_a_all = DB::connection('mysqla')->table('requests')
+                ->join('khoas', 'requests.ma_khoa', '=', 'khoas.ma_khoa')
+                ->join('chuyenmons', 'requests.ma_chuyen_mon', '=', 'chuyenmons.ma_chuyen_mon')
+                ->where('requests.trang_thai', 3)
+                ->get();
+        // dd($requests_a_all);
+        $requests_b_all = DB::connection('mysqlb')->table('requests')
+                ->join('khoas', 'requests.ma_khoa', '=', 'khoas.ma_khoa')
+                ->join('chuyenmons', 'requests.ma_chuyen_mon', '=', 'chuyenmons.ma_chuyen_mon')
+                ->where('requests.trang_thai', 3)
+                ->get();
+        $users = User::all();
+        // dd($users[0]->name);
+        return view('users.profile', compact('user','likes', 'posts', 'requests_a', 'requests_b', 'requests_b_all', 'requests_a_all', 'users'));
     }
 
     // cancel dat lich
