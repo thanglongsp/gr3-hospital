@@ -81,8 +81,12 @@
                         </div
                     <!-- end modal -->
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Thông tin cá nhân')">Thông tin cá nhân</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Yêu cầu khám bệnh')">Yêu cầu khám bệnh</button>                
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Trạng thái các khoa')">Trạng thái các khoa</button>                
+                @if(Auth::user()->role != 'A' && Auth::user()->role != 'B')
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Hồ sơ bệnh án')">Hồ sơ bệnh án</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Đặt lịch khám')">Đặt lịch khám</button>
+                @endif
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bài viết yêu thích')">Bài viết yêu thích</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bài viết của tôi')">Bài viết của tôi</button>
             </div>
@@ -240,6 +244,7 @@
                         </div
                     <!-- end modal -->
                 </div>
+                @if(Auth::user()->role != 'A' && Auth::user()->role != 'B')
                 <div id="Hồ sơ bệnh án" class="w3-container city" style="display:none">
                     <div class="ex1">
                         <h2>Ngày xxx</h2>
@@ -304,7 +309,88 @@
                     
                     </div>
                 </div>
-
+                @endif
+                <!-- Hiển thị yêu cầu khám -->
+                @if(Auth::user()->role == 'A')
+                <div id="Yêu cầu khám bệnh" class="w3-container city" style="display:none">
+                <center><input type="text" id="myInputA" onkeyup="myFunctionA()" placeholder="Tìm kiếm với chuyên môn" style="width: 200px;"></center>
+                <br>
+                    <div class="ex1">
+                    <table style="width: 100%;" id="myTableA">
+                                <tr style="height: 30px;">
+                                    <th>Tên người dùng </th>
+                                    <th>Ngày đặt</th>
+                                    <th>Giờ đặt</th>
+                                    <th>Khoa</th>
+                                    <th>Chuyên môn</th>
+                                    <th>Cách thức</th>
+                                    <th>Trạng thái</th>
+                                    <th></th>
+                                </tr>
+                                @if($requests_a_all != '')
+                                    @foreach($requests_a_all->sortBy('ngay_thu') as $req)
+                                    <tr style="height: 30px;">
+                                        @foreach($users as $user)
+                                        @if($user->id == $req->user_id)
+                                        <td> <a href="{{ route('users.profile', $user->id) }}">{{ $user->full_name }} </a> </td>
+                                        @endif
+                                        @endforeach
+                                        <td>{{ $req->ngay_thu }}</td>
+                                        <td>{{ $req->thoi_gian }}</td>
+                                        <td>{{ $req->ten_khoa }}</td>
+                                        <td>{{ $req->ten_chuyen_mon }}</td>
+                                        <td>{{ $req->cach_thuc }}</td>
+                                        <td>Đã đặt </td>
+                                        <td><button style="background-color: Transparent;border: none;color:red;" name="A" id="{{ $req->ma_request }}" onclick="cancelDatlich(this.id, this.name)">Hủy lịch</button> </td>
+                                    </tr>
+                                    @endforeach   
+                                @endif
+                    </table>
+                    </div>
+                </div>
+                @endif
+                @if(Auth::user()->role == 'B')
+                <div id="Yêu cầu khám bệnh" class="w3-container city" style="display:none">
+                <center><input type="text" id="myInputB" onkeyup="myFunctionB()" placeholder="Tìm kiếm với chuyên môn" style="width: 200px;"></center>
+                <br>
+                    <div class="ex1">
+                    <table style="width: 100%;" id="myTableB">
+                                <tr style="height: 30px;">
+                                    <th>Tên người dùng </th>
+                                    <th>Ngày đặt</th>
+                                    <th>Giờ đặt</th>
+                                    <th>Khoa</th>
+                                    <th>Chuyên môn</th>
+                                    <th>Cách thức</th>
+                                    <th>Trạng thái</th>
+                                    <th></th>
+                                </tr>
+                                @if($requests_b_all != '')
+                                    @foreach($requests_b_all->sortBy('ngay_thu') as $req)
+                                    <tr style="height: 30px;">
+                                        @foreach($users as $user)
+                                        @if($user->id == $req->user_id)
+                                        <td> <a href="{{ route('users.profile', $user->id) }}">{{ $user->full_name }} </a> </td>
+                                        @endif
+                                        @endforeach
+                                        <td>{{ $req->ngay_thu }}</td>
+                                        <td>{{ $req->thoi_gian }}</td>
+                                        <td>{{ $req->ten_khoa }}</td>
+                                        <td>{{ $req->ten_chuyen_mon }}</td>
+                                        <td>{{ $req->cach_thuc }}</td>
+                                        <td>Đã đặt </td>
+                                        <td><button style="background-color: Transparent;border: none;color:red;" name="A" id="{{ $req->ma_request }}" onclick="cancelDatlich(this.id, this.name)">Hủy lịch</button> </td>
+                                    </tr>
+                                    @endforeach   
+                                @endif
+                    </table>
+                    </div>
+                </div>
+                @endif
+                <!-- end hiển thị Yêu cầu khám -->
+                <div id="Trạng thái các khoa" class="w3-container city" style="display:none">
+                
+                </div>
                 <!-- display favarite post -->
                 <div id="Bài viết yêu thích" class="w3-container city" style="display:none">
                     <div class="ex1">
@@ -375,5 +461,45 @@ function cancelDatlich(clicked_id, clicked_name){
                 },
             });
         }
+}
+</script>
+<script>
+function myFunctionA() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputA");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableA");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+<script>
+function myFunctionB() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputB");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableB");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
 }
 </script>
