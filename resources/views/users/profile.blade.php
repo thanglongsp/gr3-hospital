@@ -80,20 +80,26 @@
                             </div>
                         </div
                     <!-- end modal -->
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Thông tin cá nhân')">Thông tin cá nhân</button>   
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Yêu cầu khám bệnh')">Yêu cầu khám bệnh</button>                
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Trạng thái các khoa')">Trạng thái các khoa</button>                
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Hồ sơ bệnh án')">Hồ sơ bệnh án</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Đặt lịch khám')">Đặt lịch khám</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bài viết yêu thích')">Bài viết yêu thích</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bài viết của tôi')">Bài viết của tôi</button>
+                <div class="tab">
+                    <button style="width: 200px;" class="tablinks" onclick="openCity(event, 'Thông tin cá nhân')">Thông tin cá nhân</button>   
+                    @if(Auth::user()->role == 'A' || Auth::user()->role == 'B')
+                    <button style="width: 200px;" class="tablinks" onclick="openCity(event, 'Yêu cầu khám bệnh')">Yêu cầu khám bệnh</button>                
+                    <button style="width: 200px;" class="tablinks" onclick="openCity(event, 'Trạng thái các khoa')">Trạng thái các khoa</button>                
+                    @endif
+                    @if(Auth::user()->role != 'A' && Auth::user()->role != 'B')              
+                    <button style="width: 200px;" class="tablinks" onclick="openCity(event, 'Hồ sơ bệnh án')">Hồ sơ bệnh án</button>
+                    <button style="width: 200px;" class="tablinks" onclick="openCity(event, 'Đặt lịch khám')">Đặt lịch khám</button>
+                    @endif
+                    <button style="width: 200px;" class="tablinks" onclick="openCity(event, 'Bài viết yêu thích')">Bài viết yêu thích</button>
+                    <button style="width: 200px;" class="tablinks" onclick="openCity(event, 'Bài viết của tôi')">Bài viết của tôi</button>
+                </div>
             </div>
         </div>
         <div class="col-sm-8">
             <div style="margin-left:-200px">
 
                 <!-- Hien thi thong tin ca nhan -->
-                <div id="Thông tin cá nhân" class="w3-container city" style="display:none">
+                <div id="Thông tin cá nhân" class="tabcontent" style="display:none">
                     <table style="width:100%; margin-top: 0px;">
                         <tr>
                             <th style="height: 40px;">Biệt danh  </th>
@@ -247,7 +253,7 @@
                 <!-- Ket thuc hien thi thong tin ca nhan -->
 
                 <!-- Hien thi ho so benh an -->
-                <div id="Hồ sơ bệnh án" class="w3-container city" style="display:none">
+                <div id="Hồ sơ bệnh án" class="tabcontent" style="display:none">
                     <div class="ex1">
                         <h2>Ngày xxx</h2>
                         <p>~~~</p> 
@@ -268,7 +274,7 @@
                 <!-- Ket thuc hien thi hs benh an  -->
 
                 <!-- Hien thi dat lich kham -->
-                <div id="Đặt lịch khám" class="w3-container city" style="display:none">
+                <div id="Đặt lịch khám" class="tabcontent" style="display:none">
                     <div class="ex1">
                             <table style="width: 100%;">
                                 <tr style="height: 30px;">
@@ -316,7 +322,7 @@
 
                 <!-- Hiển thị yêu cầu khám -->
                 @if(Auth::user()->role == 'A')
-                <div id="Yêu cầu khám bệnh" class="w3-container city" style="display:none">
+                <div id="Yêu cầu khám bệnh" class="tabcontent" style="display:none">
                     <input type="text" id="myInputATND" onkeyup="myFunctionATND()" placeholder="Tìm kiếm Tên người dùng" style="width: 298px;">                
                     <input type="text" id="myInputATK" onkeyup="myFunctionATK()" placeholder="Tìm kiếm Tên khoa" style="width: 298px;">                
                     <input type="text" id="myInputATCM" onkeyup="myFunctionATCM()" placeholder="Tìm kiếm Tên chuyên môn" style="width: 298px;">  
@@ -358,7 +364,7 @@
                 @endif
 
                 @if(Auth::user()->role == 'B')
-                <div id="Yêu cầu khám bệnh" class="w3-container city" style="display:none">
+                <div id="Yêu cầu khám bệnh" class="tabcontent" style="display:none">
                     <input type="text" id="myInputBTND" onkeyup="myFunctionBTND()" placeholder="Tìm kiếm Tên người dùng" style="width: 298px;">                
                     <input type="text" id="myInputBTK" onkeyup="myFunctionBTK()" placeholder="Tìm kiếm Tên khoa" style="width: 298px;">                
                     <input type="text" id="myInputBTCM" onkeyup="myFunctionBTCM()" placeholder="Tìm kiếm Tên chuyên môn" style="width: 298px;">  
@@ -402,7 +408,7 @@
 
                 <!-- Hien thi trang thai cac khoa -->
                 @if(Auth::user()->role == 'A' || Auth::user()->role == 'B')
-                <div id="Trạng thái các khoa" class="w3-container city" style="display:none">
+                <div id="Trạng thái các khoa" class="tabcontent" style="display:none">
                     <input type="text" id="myInputCMK" onkeyup="myFunctionCMK()" placeholder="Tìm kiếm Mã khoa" style="width: 220px;">                
                     <input type="text" id="myInputCMCM" onkeyup="myFunctionCMCM()" placeholder="Tìm kiếm Mã chuyên môn" style="width: 220px;">                
                     <input type="text" id="myInputCTK" onkeyup="myFunctionCTK()" placeholder="Tìm kiếm Tên khoa" style="width: 220px;">                
@@ -459,7 +465,7 @@
                 <!-- End hien thi trang thai cac khoa -->
 
                 <!-- display favarite post -->
-                <div id="Bài viết yêu thích" class="w3-container city" style="display:none">
+                <div id="Bài viết yêu thích" class="tabcontent" style="display:none">
                     <div class="ex1">
                     <br>
                     @foreach($likes->sortByDESC('created_at') as $like)
@@ -477,23 +483,106 @@
                             <td>{{ $like->post->user['name']}}</td>
                         </tr>
                         <tr style="height: 30px;">
-                            <th><a href="#" style="color: blue;"><u>chi tiết</u></a></th>  
+                            <th><a href="#" style="color: blue;" data-toggle="modal" data-target="#myFavoritePost{{ $like->post['id']}}"><u>chi tiết</u></a></th>  
                             <td></td>
                         </tr>
                         </table>
                         <br>
+                    <!-- Modal bài viết yêu thích -->
+                    <div class="modal fade" id="myFavoritePost{{ $like->post['id']}}" role="dialog" style="margin-left: -350px;">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Bài viết yêu thích</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                            <div class="col-sm-8">
+                                                <center><p><strong>Bài viết</strong></p></center>
+                                                <table style="width:100%;">
+                                                <tr style="height: 100px;">
+                                                    <th>Tiếu đề : </th>
+                                                    <td>{{ $like->post['title']}}</p>
+                                                </tr>   
+                                                <tr style="height: 100px;">
+                                                    <th>Nội dung : </th>
+                                                    <td> {{ $like->post['content']}} </td>
+                                                </tr>
+                                                </table>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <br>
+                                                <center><p>Ảnh đính kèm</p></center>
+                                                <br>
+                                                <img id="picture" src="/images/forums/{{ $like->post['picture']}}" style="width:100%;" >
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                     @endforeach
                     </div>
                 </div>
                 <!-- End display favarite post -->
 
                 <!-- display favarite post -->
-                <div id="Bài viết của tôi" class="w3-container city" style="display:none">
+                <div id="Bài viết của tôi" class="tabcontent" style="display:none">
                     <div class="ex1">
                     @foreach($posts->sortBy('created_at') as $post)
                         <h2>Tiêu đề : {{ $post->title }}</h2>
                         <p>Thời gian : {{ $post->created_at }}</p> 
-                        <p> <a href="#" style="margin-left:90%; color: blue;"><u>chi tiết</u></a>
+                        <p> <a href="#" data-toggle="modal" data-target="#myModalMyPost{{ $post->id }}" style="margin-left:90%; color: blue;"><u>chi tiết</u></a>
+                    <!-- Modal bài viết của tôi -->
+                    <div class="modal fade" id="myModalMyPost{{ $post->id }}" role="dialog" style="margin-left: -350px;">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Bài viết </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="col-sm-12">                    
+                                            <div class="col-sm-8">
+                                                <center><p><strong>Bài viết</strong></p></center>
+                                                <table style="width:100%;">
+                                                <tr style="height: 100px;">
+                                                    <th>Tiếu đề : </th>
+                                                    <td>{{ $post->title }}</p>
+                                                </tr>   
+                                                <tr style="height: 100px;">
+                                                    <th>Nội dung : </th>
+                                                    <td> {{ $post->content }} </td>
+                                                </tr>
+                                                </table>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <br>
+                                                <center><p>Ảnh đính kèm</p></center>
+                                                <br>
+                                                <img id="picture" src="/images/forums/{{ $post->picture }}" style="width:100%;" >
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-danger" title="Xóa bài viết" id="XoaBai" value="{{ $post->id }}" onclick="deletePost(this.value);">Xóa</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                     @endforeach
                     </div>
                 </div>
@@ -721,4 +810,43 @@ function myFunctionCTCM() {
     }       
   }
 }
+</script>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+<script>
+    function deletePost(clicked_value){
+        var url = "{{route('posts.delete')}}";
+        if(confirm("Ban co chac chan xoa ?")){
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: {
+                    "_token"        : '{{csrf_token()}}',
+                    "post_id"        : clicked_value,
+                },
+                success: function(data) {
+                    window.location.reload();
+                },
+                error: function(data) {
+                    console.log(data);
+                    alert('error!');
+                },
+            });
+        }
+    }
 </script>
