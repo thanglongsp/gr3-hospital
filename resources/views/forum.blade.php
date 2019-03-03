@@ -60,7 +60,7 @@
                     <p>{{ $post->content }}</p>
                 @endif
                 @if($post->picture != NULL)
-                    <img src="/images/forums/{{ $post->picture }}" style="width:200px;">
+                    <img src="/images/forums/{{ $post->picture }}" style="width:100%;">
                 @endif      
                 </div>          
                 <div class="divPostUserFooter">
@@ -103,7 +103,14 @@
                     <div>
                         <div class="col-sm-2">
                             <a class="pr-3">
-                            <img class="mr-3 img-responsive" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 50px; text-align: center; width: 50px;">
+                            @if(Auth::user()->avatar == NULL && Auth::user()->gender == 1)
+                            <img type="hidden" class="mr-3 img-responsive" src="{{asset('images/avatars/user_man.png')}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 50px; text-align: center; width: 50px;">
+                            @elseif(Auth::user()->avatar == NULL && Auth::user()->gender == 2)
+                            <img type="hidden" class="mr-3 img-responsive" src="{{asset('images/avatars/user_girl.png')}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 50px; text-align: center; width: 50px;">
+                            @else
+                            <img type="hidden" class="mr-3 img-responsive" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 50px; text-align: center; width: 50px;">
+                            @endif
+                            <!-- <img class="mr-3 img-responsive" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 50px; text-align: center; width: 50px;"> -->
                             </a>
                         </div>
                         <form action="{{ route('post_comment', [Auth::user()->id, $post->id ]) }}" method="post" enctype="multipart/form-data">
@@ -226,7 +233,14 @@
                                 </div>
                                 <div class="col-sm-2 col-xs-3">
                                     <a class="pr-3">
-                                    <img class="mr-3 img-responsive" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 30px; text-align: center; width: 30px;">
+                                    @if(Auth::user()->avatar == NULL && Auth::user()->gender == 1)
+                                    <img type="hidden" class="mr-3 img-responsive" src="{{asset('images/avatars/user_man.png')}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 30px; text-align: center; width: 30px;">
+                                    @elseif(Auth::user()->avatar == NULL && Auth::user()->gender == 2)
+                                    <img type="hidden" class="mr-3 img-responsive" src="{{asset('images/avatars/user_girl.png')}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 30px; text-align: center; width: 30px;">
+                                    @else
+                                    <img type="hidden" class="mr-3 img-responsive" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 30px; text-align: center; width: 30px;">
+                                    @endif
+                                    <!-- <img class="mr-3 img-responsive" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Generic placeholder image" style="background: #F0FFFF; border-radius: 50%; border: 2px solid #1E90FF; height: 30px; text-align: center; width: 30px;"> -->
                                     </a>
                                 </div>
                                 <div class="col-sm-2 col-xs-3">

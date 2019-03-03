@@ -45,6 +45,11 @@ Route::post('/users/cancel/datlich', [
     'uses'=>'UserController@cancelDatlich'
 ]);
 
+Route::post('posts/delete',[
+    'as'=>'posts.delete',
+    'uses'=>'UserController@deletePost'
+]);
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 // Forum

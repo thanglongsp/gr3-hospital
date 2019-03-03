@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Like;
 use App\Post;
+use App\Comment;
 
 class UserController extends Controller
 {
@@ -100,6 +101,18 @@ class UserController extends Controller
                 ->delete();
 
         return redirect()->route('users.profile', Auth::user()->id);         
+    }
+
+    public function deletePost(Request $req){
+        // dd($id);
+        $cmts = Comment::where('post_id', $req->post_id);
+        $cmts->delete();
+
+        $likes = Like::where('post_id', $req->post_id); 
+        $likes->delete();       
+
+        $post = Post::find($req->post_id);
+        $post->delete();
     }
 }
 
