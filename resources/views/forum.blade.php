@@ -1,17 +1,17 @@
 @extends('layouts.master')
 @include('layouts.header')
 @section('content')
-<div class="col-sm-12" style="margin-top: 50px; margin-left:60px;">
-    <div class="col-sm-1"></div>
+<div class="col-sm-12" style="margin-top: 50px; margin-left:0px;">
+    <!-- <div class="col-sm-1"></div> -->
     <!-- Link left -->
-    <div class="col-sm-2" style="background-color: #978ea7;">
+    <div class="col-sm-3">
         <div class="divForum">
             <div class="divForumChild"> 
                 <br>
                 <p>Bài viết được quan tâm</p>
             </div>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
+            <a href="#2">link ... </a><br>
+            <a href="#1">link ... </a><br>
             <a href="">link ... </a><br>
             <a href="">link ... </a><br>
             <a href="">link ... </a><br>
@@ -30,7 +30,7 @@
         </div>
     </div>
     <!-- End link left -->
-    <div class="col-sm-5">
+    <div class="col-sm-6">
 
         <!-- Đăng bài -->
         <div class="col-sm-12">        
@@ -51,7 +51,7 @@
         <div class="content">
         @foreach($posts as $post)
             <!-- Bài viết -->
-            <div class="divPostUser">
+            <div class="divPostUser" id="{{ $post->id }}">
                 <div class="divPostUserHeader">
                     <p>{{ $post->title }}</p>
                 </div>
@@ -202,11 +202,11 @@
                                 </div>
                             </div>
                             <div>
-                                <p><span class="glyphicon glyphicon-hand-right"></span> {{ $cmt->content }}</p>
+                                <p style="margin-left: 60px;"><span class="glyphicon glyphicon-hand-right"></span> {{ $cmt->content }}</p>
                                 <div class="row">
                                 @if($cmt->picture != NULL)
                                 @foreach(explode(',',$cmt->picture) as $picture)
-                                    <div class="col-sm-5 col-xs-4">
+                                    <div class="col-sm-5 col-xs-4" style="margin-left: 50px;">
                                         <img class="mr-3 img-responsive" src="{{asset('images/comments/'.$picture)}}" alt="Generic placeholder image" style="background: #dddddd; border-radius: 5%; border: 2px solid #a1a1a1; height: 150px; text-align: center; width: 230px;">
                                     </div>
                                 @endforeach
@@ -219,7 +219,7 @@
                                             <a href="#" data-toggle="modal" title="Sửa bình luận" data-target="#modalEditComment{{ $cmt->id }}" style="margin-left: 510px;"><span class="glyphicon glyphicon-pencil" style="font-size:15px; color:blue; margin-left: 0px;"></span></a>
                                         </div> 
                                         <div class="col-sm-10 col-xs-3">                                        
-                                            <a href="{{ route('comments.delete', $cmt->id) }}" data-toggle="tooltip" title="Xóa bình luận"><span class="glyphicon glyphicon-remove-circle" style="font-size:15px; color:red; margin-left: 380px;"></span></a>
+                                            <a href="{{ route('comments.delete', $cmt->id) }}" data-toggle="tooltip" title="Xóa bình luận"><span class="glyphicon glyphicon-remove-circle" style="font-size:15px; color:red; margin-left: 350px;"></span></a>
                                         </div>
                                     </div>
                                 @endif
@@ -332,11 +332,11 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <p><span class="glyphicon glyphicon-hand-right" style="margin-left: 50px;"></span> {{ $cmt_reply->content }}</p>
+                                    <p><span class="glyphicon glyphicon-hand-right" style="margin-left: 100px;"></span> {{ $cmt_reply->content }}</p>
                                     <div class="row" style="margin-left: 50px;">
                                     @if($cmt_reply->picture != NULL)
                                     @foreach(explode(',',$cmt_reply->picture) as $picture)
-                                        <div class="col-sm-4 col-xs-4">
+                                        <div class="col-sm-4 col-xs-4" style="margin-left: 30px;">
                                             <img class="mr-3 img-responsive" src="{{asset('images/comments/'.$picture)}}" alt="Generic placeholder image" style="background: #dddddd; border-radius: 5%; border: 2px solid #a1a1a1; height: 100px; text-align: center; width: 150px;">
                                         </div>
                                     @endforeach
@@ -349,7 +349,7 @@
                                                 <a href="#" data-toggle="modal" title="Sửa bình luận" data-target="#modalEditReply{{ $cmt_reply->id }}" style="margin-left: 510px;"><span class="glyphicon glyphicon-pencil" style="font-size:15px; color:blue; margin-left: 0px;"></span></a>
                                             </div> 
                                             <div class="col-sm-10 col-xs-3">                                        
-                                                <a href="{{ route('comments.delete', $cmt_reply->id) }}" data-toggle="tooltip" title="Xóa bình luận"><span class="glyphicon glyphicon-remove-circle" style="font-size:15px; color:red; margin-left: 380px;"></span></a>
+                                                <a href="{{ route('comments.delete', $cmt_reply->id) }}" data-toggle="tooltip" title="Xóa bình luận"><span class="glyphicon glyphicon-remove-circle" style="font-size:15px; color:red; margin-left: 350px;"></span></a>
                                             </div>
                                         </div>
                                     @endif
@@ -419,11 +419,11 @@
         </div>
     </div>
     <!-- Link right -->
-    <div class="col-sm-2" style="background-color: #978ea7;">
+    <div class="col-sm-3">
         <div class="divForum">
             <div class="divForumChild"> 
                 <br>
-                <p>Bài viết được quan tâm</p>
+                <p>Người dùng nhiệt tình</p>
             </div>
             <a href="">link ... </a><br>
             <a href="">link ... </a><br>
