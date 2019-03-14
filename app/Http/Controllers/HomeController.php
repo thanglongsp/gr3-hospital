@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+ 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Slide;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,7 @@ class HomeController extends Controller
         $chuyenmons_a = "";
         $chuyenmons_b = "";
         $ma_chuyen_mon = $cm;
+        $slides = Slide::all();
         // dd($chuyenmons_a);
         if($bv == 'ALL' && $khoa == 'ALL' && $cm == 'ALL')
         {
@@ -166,7 +168,7 @@ class HomeController extends Controller
                 ->join('doctors', 'motas.bs_phu_trach', '=', 'doctors.ma_bs')
                 ->get();
         
-        return view('home', compact('chuyenmons_a', 'chuyenmons_b', 'chuyenmons', 'ma_chuyen_mon', 'bv', 'khoa', 'date', 'requests_a', 'requests_b', 'input_time', 'time_gio', 'time_phut', 'search_info', 'motas_a', 'motas_b'));
+        return view('home', compact('slides', 'chuyenmons_a', 'chuyenmons_b', 'chuyenmons', 'ma_chuyen_mon', 'bv', 'khoa', 'date', 'requests_a', 'requests_b', 'input_time', 'time_gio', 'time_phut', 'search_info', 'motas_a', 'motas_b'));
     }
     
     public function postDatlich(Request $req)

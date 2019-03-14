@@ -1,7 +1,9 @@
 @extends('layouts.master')
+@include('layouts.slider')
 @include('layouts.header')
 @section('content')
-@include('layouts.slide')
+<br>
+<br>
 <div class="col-sm-12">
         <div class="col-sm-4">
             <div class="condition">
@@ -194,9 +196,8 @@
                                     <div class="card">
                                         <div class="col-sm-12">                    
                                         <table style="width:100%">
-                                        <tr>
+                                        <tr> 
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -206,7 +207,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -342,7 +342,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -352,7 +351,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -492,7 +490,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -502,7 +499,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -638,7 +634,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -648,7 +643,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -781,7 +775,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -791,7 +784,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -929,7 +921,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -939,7 +930,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -1073,7 +1063,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -1083,7 +1072,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -1221,7 +1209,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -1231,7 +1218,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -1369,7 +1355,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -1379,7 +1364,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -1516,7 +1500,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -1526,7 +1509,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -1664,7 +1646,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -1674,7 +1655,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -1810,7 +1790,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -1820,7 +1799,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -1957,7 +1935,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -1967,7 +1944,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -2104,7 +2080,6 @@
                                         <table style="width:100%">
                                         <tr>
                                             <th style="width:5%">Phòng </th>
-                                            <td style="width:10%">Thời gian </td>
                                             <td style="width:15%;" >Bác sĩ </td>
                                             <td style="width:10%;" >Chức danh </td>
                                             <td style="width:70%;" >Mô tả </td>
@@ -2114,7 +2089,6 @@
                                             <th>{{ $t }} </th>
                                             @foreach( $motas_a as $mta )
                                             @if( $t == $mta->ma_quy_trinh )
-                                            <td>{{ $mta->thoi_gian }} Phút </td>
                                             <td>{{ $mta->hoten_bs }} </td>
                                             <td>{{ $mta->chuc_danh }} </td>
                                             <td>{{ $mta->mo_ta }} </td>
@@ -2192,5 +2166,21 @@
                 document.getElementById('thong_bao').innerHTML = "Mời bạn chọn ngày !";
         });
     });
+    </script>
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+          }
+          myIndex++;
+          if (myIndex > x.length) {myIndex = 1}    
+          x[myIndex-1].style.display = "block";  
+          setTimeout(carousel, 5000); // Change image every 2 seconds
+        }
     </script>             
 @endsection
