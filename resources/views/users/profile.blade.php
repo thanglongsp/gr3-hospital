@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"> 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{asset('images/logo.png')}}"/>
 	<title>Hospital</title>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -289,17 +289,21 @@
                                         </tr>
                                         </table>
                                         <h3>I. HÀNH CHÍNH</h3>
-                                            <p>1. Họ và tên <i>(In hoa)</i></p>
-                                            <p>2. Ngày sinh      Tuổi   </p>
-                                            <p>3. Giới tính :  </p>
-                                            <p>4. Nghề nghiệp : </p>
-                                            <p>5. Dân tộc : </p>
-                                            <p>6. Ngoại kiều : </p>
-                                            <p>7. Địa chỉ : </p>
-                                            <p>8. Nơi làm việc : </p>
-                                            <p>9. Đối tượng : </p>
-                                            <p>10. BHYT giá trị đến ngày ... tháng ... năm ...  : </p>
-                                            <p>11. Họ tên địa chỉ người nhà khi cần báo tin : ... số điện thoại </p>
+                                            @foreach( $hs_noikhoa_as as $noi_khoa )
+                                            @if( $noi_khoa->ma_benh_nhan == Auth::user()->hospital_a_code )
+                                                <p>1. Họ và tên <i>(In hoa)</i><strong> {{ $noi_khoa->ten_benh_nhan }}</strong></p>
+                                                <p>2. Ngày sinh : {{ $noi_khoa->birth_day }}   </p>
+                                                <p>3. Giới tính : {{ $noi_khoa->gioi_tinh }} </p>
+                                                <p>4. Dân tộc : {{ $noi_khoa->dan_toc }}</p>
+                                                <p>5. Ngoại kiều : {{ $noi_khoa->viet_kieu }}</p>
+                                                <p>6. Địa chỉ : {{ $noi_khoa->dia_chi }}</p>
+                                                <p>7. Nghề nghiệp : {{ $noi_khoa->nghe_nghiep }} </p>
+                                                <p>8. Nơi làm việc : {{ $noi_khoa->noi_lam_viec }} </p>
+                                                <p>9. Đối tượng : {{ $noi_khoa->ma_doi_tuong }}</p>
+                                                <p>10. BHYT giá trị đến : {{ $noi_khoa->ngay_het_han }} </p>
+                                                <p>11. Họ tên địa chỉ người nhà khi cần báo tin : <strong>{{ $noi_khoa->hoten_nguoi_nha }}</strong>, {{ $noi_khoa->dia_chi }}, số điện thoại : {{ $noi_khoa->so_dien_thoai }} </p>
+                                            @endif
+                                            @endforeach
                                         <h3>II. QUẢN LÝ NGƯỜI BỆNH</h3>
                                             <p>12. Vào viện : giờ ... phút ... ngày ... </p>
                                             <p>13. Trực tiếp vào : </p>
@@ -594,17 +598,21 @@
                                         </tr>
                                         </table>
                                         <h3>I. HÀNH CHÍNH</h3>
-                                            <p>1. Họ và tên <i>(In hoa)</i></p>
-                                            <p>2. Ngày sinh      Tuổi   </p>
-                                            <p>3. Giới tính :  </p>
-                                            <p>4. Dân tộc : </p>
-                                            <p>5. Ngoại kiều : </p>
-                                            <p>6. Địa chỉ : </p>
+                                        @foreach( $hs_noikhoa_as as $noi_khoa )
+                                        @if( $noi_khoa->ma_benh_nhan == Auth::user()->hospital_a_code )
+                                            <p>1. Họ và tên <i>(In hoa)</i> {{ $noi_khoa->ten_benh_nhan }}</p>
+                                            <p>2. Ngày sinh : {{ $noi_khoa->birth_day }}   </p>
+                                            <p>3. Giới tính : {{ $noi_khoa->gioi_tinh }} </p>
+                                            <p>4. Dân tộc : {{ $noi_khoa->dan_toc }}</p>
+                                            <p>5. Ngoại kiều : {{ $noi_khoa->viet_kieu }}</p>
+                                            <p>6. Địa chỉ : {{ $noi_khoa->dia_chi }}</p>
                                             <p>7. Họ tên bố ... Trình độ văn hóa của Bố ... Họ tên mẹ ... trình độ văn hóa của mẹ ... </p>
                                             <p>Nghề nghiệp của bố ... Nghề nghiệp của mẹ ... </p>
                                             <p>8. Đối tượng : 1. BHYT 2. Thu phí 3. Miễn 4.Khác</p>
                                             <p>9. BHYT giá trị đến ngày ... tháng ... năm ...  : </p>
                                             <p>10. Họ tên địa chỉ người nhà khi cần báo tin : ... số điện thoại </p>
+                                        @endif
+                                        @endforeach
                                         <h3>II. QUẢN LÝ NGƯỜI BỆNH</h3>
                                             <p>12. Vào viện : giờ ... phút ... ngày ... </p>
                                             <p>13. Trực tiếp vào : </p>

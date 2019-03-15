@@ -8,25 +8,11 @@
         <div class="divForum">
             <div class="divForumChild"> 
                 <br>
-                <p>Bài viết được quan tâm</p>
+                <p>10 Bài viết được quan tâm</p>
             </div>
-            <a href="#2">link ... </a><br>
-            <a href="#1">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
+            @foreach($posts as $post)
+            <a href="#{{ $post->id }}">{{ $post->title }}</a><br>
+            @endforeach
         </div>
     </div>
     <!-- End link left -->
@@ -423,7 +409,7 @@
         <div class="divForum">
             <div class="divForumChild"> 
                 <br>
-                <p>Người dùng nhiệt tình</p>
+                <p>10 Người dùng hoạt động nhất</p>
             </div>
             <a href="">link ... </a><br>
             <a href="">link ... </a><br>

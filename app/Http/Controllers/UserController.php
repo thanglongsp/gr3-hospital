@@ -80,11 +80,15 @@ class UserController extends Controller
         // dd($requests_a_all);
         $chuyenmons_a = DB::connection('mysqla')->table('chuyenmons')
                 ->join('khoas', 'chuyenmons.ma_khoa', '=', 'khoas.ma_khoa')
-                ->get();
-        
+                ->get(); 
+        $hs_noikhoa_as = DB::connection('mysqla')->table('patients')
+                ->join('bao_hiem_yts', 'patients.ma_benh_nhan', 'bao_hiem_yts.ma_bn')   
+                ->join('nguoi_nha_bns', 'patients.ma_benh_nhan', 'nguoi_nha_bns.ma_bn')   
+                ->get(); 
+        // dd($hs_noikhoa_as);
         $users = User::all();
         // dd($users[0]->name);
-        return view('users.profile', compact('user','likes', 'posts', 'requests_a', 'requests_b', 'requests_b_all', 'requests_a_all', 'users', 'chuyenmons_a', 'chuyenmons_b'));
+        return view('users.profile', compact('user','likes', 'posts', 'requests_a', 'requests_b', 'requests_b_all', 'requests_a_all', 'users', 'chuyenmons_a', 'chuyenmons_b', 'hs_noikhoa_as'));
     }
 
     // cancel dat lich

@@ -73,8 +73,7 @@
                     <p> Chọn giờ : <input type="time" id="time">
                 </div>
                 <br>
-                <br>
-                <center><button id="findBtn" class="btn btn-success">Xem kết quả</button></center>
+                <center><button id="findBtn" class="btn btn-success" style="width: 100%;">Xem kết quả</button></center>
             </div>
         </div>
         <div  class="col-sm-8">
