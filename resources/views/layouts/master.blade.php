@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<link rel="icon" type="image/png" href="{{asset('images/logo.png')}}"/>
+    <title>Hospital</title
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Hospital</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
