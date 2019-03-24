@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-use App\Comment;
+use App\Comment; 
 use App\User;
 use App\Like;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +31,9 @@ class ForumController extends Controller
         $likes      = Like::all();
         $count_like = $likes->count();
         $dem;
-        return view('forum', compact('posts', 'comments', 'likes', 'count_like', 'dem'));
+        $users      = User::all()->where('role','0');
+        // dd($users);
+        return view('forum', compact('posts', 'comments', 'likes', 'count_like', 'dem', 'users'));
     }
 
     // like post
