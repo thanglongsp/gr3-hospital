@@ -9,9 +9,9 @@
             <div class="divForumChild"> 
                 <br>
                 <p>10 Bài viết được quan tâm</p>
-            </div>
+            </div> 
             @foreach($posts as $post)
-            <a href="#{{ $post->id }}">{{ $post->title }}</a><br>
+            <a href="#{{ $post->id }}"><button style="width:100%;background-color: Transparent;">{{ $post->title }}</button></a><br>
             @endforeach
         </div>
     </div>
@@ -411,23 +411,9 @@
                 <br>
                 <p>10 Người dùng hoạt động nhất</p>
             </div>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
-            <a href="">link ... </a><br>
+            @foreach($users as $user)
+            <a href="#"><button style="width:100%; background-color: Transparent;">{{ $user->name }}</button></a><br>
+            @endforeach
         </div>
     </div>
     <!-- end link right -->

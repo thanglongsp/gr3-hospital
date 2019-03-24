@@ -20,7 +20,7 @@
 <body> 
 @include('layouts.header')
 @include('layouts.background')
-<div class="container">
+<div class="container"> 
     <div class="fb-profile">
         @if(Auth::user()->avatar != NULL)
             <img  align="left" class="fb-image-profile" style="width:200px;" id="img_avatar" class="card-img-top" src="{{asset('images/avatars/'.Auth::user()->avatar)}}" alt="Card image cap" style="padding: 6px">
@@ -102,27 +102,27 @@
                 <div id="Thông tin cá nhân" class="tabcontent" style="display:none">
                     <table style="width:100%; margin-top: 0px;">
                         <tr>
-                            <th style="height: 40px;">Biệt danh  </th>
+                            <td style="height: 40px;">Biệt danh  </td>
                             <td>{{ Auth::user()->name }}<td>
                         </tr> 
                         <tr>
-                            <th style="height: 40px;">Họ tên đầy đủ  </th>
+                            <td style="height: 40px;">Họ tên đầy đủ  </td>
                             <td>{{ Auth::user()->full_name }}<td>
                         </tr>
                         <tr>
-                            <th style="height: 40px;">Ngày sinh  </th>
+                            <td style="height: 40px;">Ngày sinh  </td>
                             <td>{{ Auth::user()->birth_day }}<td>
                         </tr> 
                         <tr>
-                            <th style="height: 40px;">Địa chỉ hiện tại  </th>
+                            <td style="height: 40px;">Địa chỉ hiện tại  </td>
                             <td>{{ Auth::user()->address }}<td>
                         </tr> 
                         <tr>
-                            <th style="height: 40px;">Công việc  </th>
+                            <td style="height: 40px;">Công việc  </td>
                             <td>{{ Auth::user()->work }}<td>
                         </tr> 
                         <tr>
-                            <th style="height: 40px;">Giới tính  </th>
+                            <td style="height: 40px;">Giới tính  </td>
                             @if( Auth::user()->gender == 1 )
                             <td>Nam<td>
                             @else
@@ -130,11 +130,11 @@
                             @endif
                         </tr>
                         <tr>
-                            <th style="height: 40px;">Số điện thoại  </th>
+                            <td style="height: 40px;">Số điện thoại  </td>
                             <td>{{ Auth::user()->phone_number }}<td>
                         </tr>
                         <tr>
-                            <th style="height: 40px;">Email </th>
+                            <td style="height: 40px;">Email </td>
                             <td>{{ Auth::user()->email }}<td>
                         </tr>
                     </table>
@@ -251,16 +251,32 @@
                     <!-- end modal -->
                 </div>
                 <!-- Ket thuc hien thi thong tin ca nhan -->
-
+                @if(Auth::user()->role != 'A' && Auth::user()->role != 'B')
                 <!-- Hien thi ho so benh an -->
                 <div id="Hồ sơ bệnh án" class="tabcontent" style="display:none">
                     <div class="ex1">
-                        <h2>Ngày xxx</h2>
-                        <p>~~~</p> 
-                        <p>abc xyz.</p>
-                        <p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#noikhoa">Nội khoa</a>
+                        <p>Bệnh viện A</p>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="height: 40px; width:40%;">Ngày khám</td>
+                                <td>Chi tiết</td>
+                            </tr>
+                            <tr>
+                                <td style="height: 40px; width:40%;">{{ $benh_ans[0]->ngay_tao }}</td>
+                                <td><p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#noikhoa">chi tiết</a></p></td>
+                            </tr>
+                            <tr>
+                                <td style="height: 40px; width:40%;">xxx</td>
+                                <td><p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#nhikhoa">chi tiết</a></p></td>
+                            </tr>
+                            <tr>
+                                <td style="height: 40px; width:40%;">xxx</td>
+                                <td><p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#nhankhoa">chi tiết</a></p></td>
+                            </tr>
+                        </table>
+                     <!--    <p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#noikhoa">Nội khoa</a>
                         <p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#nhikhoa">Nhi khoa</a>
-                        <p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#nhankhoa">Nhãn khoa</a>
+                        <p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#nhankhoa">Nhãn khoa</a> -->
                     <!-- Modal bệnh án nội khoa -->
                     <div class="modal fade" id="noikhoa" role="dialog" style="margin-left: -350px;">
                         <div class="modal-dialog">
@@ -302,35 +318,67 @@
                                                 <p>9. Đối tượng : {{ $noi_khoa->ma_doi_tuong }}</p>
                                                 <p>10. BHYT giá trị đến : {{ $noi_khoa->ngay_het_han }} </p>
                                                 <p>11. Họ tên địa chỉ người nhà khi cần báo tin : <strong>{{ $noi_khoa->hoten_nguoi_nha }}</strong>, {{ $noi_khoa->dia_chi }}, số điện thoại : {{ $noi_khoa->so_dien_thoai }} </p>
-                                            @endif
-                                            @endforeach
                                         <h3>II. QUẢN LÝ NGƯỜI BỆNH</h3>
-                                            <p>12. Vào viện : giờ ... phút ... ngày ... </p>
-                                            <p>13. Trực tiếp vào : </p>
-                                            <p>14. Nơi giới thiệu : ... Vào viện do bệnh này lần thứ ... </p>
-                                            <p>15. Vào khoa : ... giờ ... phút ... ngày ... </p>
-                                            <p>16. Chuyển khoa : ... giờ ... phút ... ngày ... </p>
-                                            <p>17. Chuyển viện : </p>
-                                            <p>18. Ra viện : ... ngày ... giờ ... phút ... lý do ...</p>
-                                            <p>19. Tổng số ngày điều trị : ... </p>
-                                        <h3>III. CHẨN ĐOÁN</h3>                                        
-                                            <p>20. Nơi chuyển đến : ...</p>
-                                            <p>21. KKB, Cấp cứu : ... </p>
-                                            <p>22. Khi vào khoa điều trị : </p>
-                                            <p>+ Thủ thuật : ... </p>
-                                            <p>+ Phẫu thuật : ... </p>
-                                            <p>23. Ra viện : </p>
-                                            <p>+ Bệnh chính : ...</p>
-                                            <p>+ Bệnh kèm theo : ...</p>
-                                            <p>+ Tai biến : ...</p>
-                                            <p>+ Biến chứng : ...</p>
+                                            <p>12. Vào viện : {{ $noi_khoa->ngay_vao }}</p>
+                                            @if( $noi_khoa->noi_gioi_thieu == 'khong' )
+                                            <p>13. Nơi giới thiệu : Không . Vào viện do bệnh này lần thứ ... </p>
+                                            @else
+                                            <p>13. Nơi giới thiệu : xxx Vào viện do bệnh này lần thứ ... </p>
+                                            @endif
+                                            <p>14. Vào khoa : {{ $noi_khoa->ngay_vao }} </p>
+                                            <p>15. Chuyển khoa :  </p>
+                                            <p>16. Chuyển viện : {{ $noi_khoa->chuyen_vien }}</p>
+                                            <p>17. Ra viện : {{ $noi_khoa->ngay_ra }} lý do {{ $noi_khoa->tinh_trang }}</p>
+                                            <p>18. Tổng số ngày điều trị : {{ $noi_khoa->so_ngay_dt }} </p>
+                                        <h3>III. CHẨN ĐOÁN</h3>
+                                            @if($noi_khoa->chuyen_vien == 'khong')                                        
+                                            <p>19. Nơi chuyển đến : {{ $noi_khoa->chuyen_vien }}</p>
+                                            @else
+                                            <p>19. Nơi chuyển đến : {{ $noi_khoa->chuyen_vien }}</p>
+                                            @endif
+                                            <p>20. KKB, Cấp cứu :  </p>
+                                            <p>21. Khi vào khoa điều trị : </p>
+                                            <p>+ Thủ thuật : {{ $noi_khoa->thu_thuat }}</p>
+                                            <p>+ Phẫu thuật : {{ $noi_khoa->phau_thuat }} </p>
+                                            <p>22. Ra viện : </p>
+                                            <p>+ Bệnh chính : {{ $noi_khoa->ket_qua_kham }}</p>
+                                            <p>+ Bệnh kèm theo : {{ $noi_khoa->benh_kem_theo }}</p>
+                                            <p>+ Tai biến : {{ $noi_khoa->tai_bien }}</p>
+                                            <p>+ Biến chứng : {{ $noi_khoa->bien_chung }}</p>
                                         <h3>IV. TÌNH TRẠNG RA VIỆN</h3>
                                             <p>24. Kết quả điều trị</p>
-                                            <p><i>1. Khỏi : ...</i></p>
-                                            <p><i>2. Đỡ, giảm : ...</i></p>
-                                            <p><i>3. Không thay đổi : ...</i></p>
-                                            <p><i>4. Nặng hơn : ... </i></p>
-                                            <p><i>5. Tử vong : ... </i></p>
+                                            @if( $noi_khoa->ket_qua_dt == "khỏi" )
+                                            <input type="checkbox" checked>1. Khỏi
+                                            <input type="checkbox" >2. Đỡ
+                                            <input type="checkbox" >3. Không thay đổi
+                                            <input type="checkbox" >4. Nặng hơn
+                                            <input type="checkbox" >5. Tử vong
+                                            @elseif( $noi_khoa->ket_qua_dt == "đỡ" )
+                                            <input type="checkbox" >1. Khỏi
+                                            <input type="checkbox" checked>2. Đỡ
+                                            <input type="checkbox" >3. Không thay đổi
+                                            <input type="checkbox" >4. Nặng hơn
+                                            <input type="checkbox" >5. Tử vong
+                                            @elseif( $noi_khoa->ket_qua_dt == "không" )
+                                            <input type="checkbox" >1. Khỏi
+                                            <input type="checkbox" >2. Đỡ
+                                            <input type="checkbox" checked>3. Không thay đổi
+                                            <input type="checkbox" >4. Nặng hơn
+                                            <input type="checkbox" >5. Tử vong
+                                            @elseif( $noi_khoa->ket_qua_dt == "nặng" )
+                                            <input type="checkbox" >1. Khỏi
+                                            <input type="checkbox" >2. Đỡ
+                                            <input type="checkbox" >3. Không thay đổi
+                                            <input type="checkbox" checked>4. Nặng hơn
+                                            <input type="checkbox" >5. Tử vong
+                                            @else
+                                            <input type="checkbox" >1. Khỏi
+                                            <input type="checkbox" >2. Đỡ
+                                            <input type="checkbox" >3. Không thay đổi
+                                            <input type="checkbox" >4. Nặng hơn
+                                            <input type="checkbox" checked>5. Tử vong
+                                            @endif
+                                            @if( $noi_khoa->ket_qua_dt == "tử vong" )
                                             <p>25. Giải phẫu bệnh <i>khi có sinh thiết</i></p>
                                             <p><i>1. Lành tính : ... </i></p>
                                             <p><i>2. Nghi ngờ : ... </i></p>
@@ -344,6 +392,7 @@
                                             <p>27. Nguyên nhân chính tử vong : ... </p>
                                             <p>28. Khám nghiệm tử thi : ...</p>
                                             <p>29. Chẩn đoán giải phẫu tử thi : ... </p>
+                                            @endif
                                         <table style="width: 100%;">
                                         <tr>
                                             <td >
@@ -360,206 +409,548 @@
                                         <h3>I. Lý do vào viện : ... Vào ngày thứ ... của bệnh.</h3>
                                         <h3>II. Hỏi bệnh</h3>
                                         <p>1. Quá trình bệnh lý : <i>(khởi phát, diễn biến, chẩn đoán, điều trị của tuyến dưới ...)</i>.</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
+                                        <p>- {{ $noi_khoa->dien_bien }}</p>
                                         <p>2. Tiền sử bệnh : </p>
                                         <p>+ Bản thân : </i>(phát triển thể lực từ nhỏ đến lớn, những bệnh đã mắc, phương pháp điều trị, tiêm phòng, ăn uống, sinh hoạt v.v ...)</i></p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
+                                        <p>- {{ $noi_khoa->tien_su_benh }}</p>
                                         <P>Đặc điểm liên quan bệnh</p>
                                         <table style="width: 100%;"> 
                                         <tr>
                                             <td>TT</td>
                                             <td>Ký hiệu</td>
                                             <td>Thời gian (tính theo tháng)</td>
-                                            <td>TT</td>
-                                            <td>Ký hiệu</td>
-                                            <td>thời gian (tính theo tháng)</td>
                                         </tr>
+                                        @foreach( $dac_diem_bns as $dd )
+                                        @if( $noi_khoa->ma_benh_nhan == Auth::user()->hospital_a_code )    
                                         <tr>
-                                            <td>01</td>
-                                            <td>- Dị ứng ...</td>
-                                            <td>(dị nguyên)</td>
-                                            <td>04</td>
-                                            <td>- Thuốc lá ... </td>
-                                            <td></td>
+                                            <td>{{ $dd->id }}</td>
+                                            <td>{{ $dd->ky_hieu }}</td>
+                                            <td>{{ $dd->thoi_gian }}</td>
                                         </tr>
-                                        <tr>
-                                            <td>02</td>
-                                            <td>- Ma túy ...</td>
-                                            <td></td>
-                                            <td>05</td>
-                                            <td>- Thuốc lào ... </td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>03</td>
-                                            <td>- Rượu bia ...</td>
-                                            <td></td>
-                                            <td>06</td>
-                                            <td>- Khác ... </td>
-                                            <td></td>
-                                        </tr>
+                                        @endif
+                                        @endforeach
                                         </table>      
                                         <p>+ Gia đình :<i>(Những người trong gia đình : bệnh đã mắc, đời sống, tinh thần, vật chất, v.v...)</i></p>                                 
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
+                                        <p>- {{  $noi_khoa->di_truyen_gd }}</p>
+                                        @endif
+                                        @endforeach
                                         <h3>III-Khám bệnh</h3>
-                                        <p>1. Toàn thân : (ý thức, da niêm mạc, hệ thống hạch, tuyến giáp, vị trí, kích thước, số lượng, di động v.v ...)</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>Mạch ...... lần/phút</p>
-                                        <p>Nhiệt độ .... độ C</p>
-                                        <p>Hyết áp .... / .... </p>
-                                        <p>mmHg .... </p>
-                                        <p>Nhịp thở .... </p>
-                                        <p>2. Cơ quan</p>
-                                        <p>Tuần hoàn :</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>Hô hấp :</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>Tiêu hóa :</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>Thận - Tiết niệu - Sinh dục :</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>Thần kinh :</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>Cơ - Xương - Khớp :</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>Tai - Mũi - Họng :</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>Răng - Hàm - Mặt :</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>Mắt :</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>Nội tiết, dinh dưỡng, các bệnh lý khác :</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p><strong>3. Các xét nghiệm cận lâm sàng cần làm : </strong></p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p><strong>4. Tóm tắt bệnh án : </strong></p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <h3>IV. Chẩn đoán khi vào khoa điều trị :</h3>
-                                        <p>+ Bệnh chính : ... </p>
-                                        <p>+ Bệnh kèm theo (nếu có) : ... </p>
-                                        <p>+ Phân biệt : ... </p>
-                                        <h3>V. Tiên lượng </h3>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <h3>VI. Hướng điều trị</h3>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p style="margin-left: 500px;">Ngày ... tháng ... năm ... </p>
-                                        <p style="margin-left: 500px;">Bác sỹ làm bệnh án</p>
-                                        <p style="margin-left: 500px;">Họ và tên ....</p>
-                                        <h3>B. TỔNG KẾT BỆNH ÁN</h3>
-                                        <p>1. Quá trình bệnh lý và diễn biến lâm sàng :</p> 
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>2. Tóm tắt kết quả xét nghiệm cận lâm sàng có giá trị chẩn đoán : </p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>3. Phương pháp điều trị</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>4. Tình trạng người bệnh ra viện</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>5. Hướng điều trị và các chế độ tiếp theo</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
-                                        <p>-------------------------------------------------------------------------------------</p>
+                                        <h4>Xét nghiệm máu : </h4>
+                                        <table style="width: 100%;">
+                                            <!-- @foreach( $xn_maus as $xn ) -->
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Khoa </td>
+                                                <td>{{ $xn_maus[0]->ten_khoa }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Số lượng hồng cầu </td>
+                                                <td>{{ $xn_maus[0]->so_luong_hc }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Huyết sắc tố </td>
+                                                <td>{{ $xn_maus[0]->huyet_sac_to }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Hematocrit </td>
+                                                <td>{{ $xn_maus[0]->hematocrit }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Hồng cầu có nhân </td>
+                                                <td>{{ $xn_maus[0]->hong_cau_conhan }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Hồng cầu lưới </td>
+                                                <td>{{ $xn_maus[0]->hong_cau_luoi }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Số lượng tiểu cầu </td>
+                                                <td>{{ $xn_maus[0]->so_luong_tieucau }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Số lượng bạch cầu </td>
+                                                <td>{{ $xn_maus[0]->so_luong_bachcau }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Thành phần bạch cầu </td>
+                                                <td>{{ $xn_maus[0]->thanh_phan_bachcau }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Tiểu bào bất thường </td>
+                                                <td>{{ $xn_maus[0]->tebao_bat_thuong }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Thời gian máu đông </td>
+                                                <td>{{ $xn_maus[0]->tg_mau_dong }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Nhóm máu </td>
+                                                <td>{{ $xn_maus[0]->nhom_mau }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> ngày giờ tạo </td>
+                                                <td>{{ $xn_maus[0]->created_at }}</td>
+                                            </tr>
+
+                                            <!-- @endforeach -->
+                                        </table>
+                                        <p>Bác sĩ điều trị : <strong> {{ $xn_maus[0]->hoten_bs }}</strong></p>
+
+                                        <h4>Xét nghiệm nước tiểu : </h4>
                                         <table style="width: 100%;">
                                             <tr>
-                                                <td colspan="2"> Hồ sơ, phim, ảnh</td>
-                                                <td> Người giao hồ sơ</td>
-                                                <td> Ngày ... tháng ... năm ... </td>
+                                                <td style="height: 40px; width:40%;"> Khoa </td>
+                                                <td>{{ $xn_nts[0]->ten_khoa }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Loại</td>
-                                                <td>Số tờ</td>
-                                                <td></td>
-                                                <td>Bác sỹ điều trị</td>
+                                                <td style="height: 40px; width:40%;"> Hồng cầu </td>
+                                                <td>{{ $xn_nts[0]->hong_cau }}</td>
                                             </tr>
                                             <tr>
-                                                <td>- X - quang</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="height: 40px; width:40%;"> Bạch cầu</td>
+                                                <td>{{ $xn_nts[0]->bach_cau }}</td>
                                             </tr>
                                             <tr>
-                                                <td>- CT Scanner</td>
-                                                <td></td>
-                                                <td>Họ tên : ...</td>
-                                                <td></td>
+                                                <td style="height: 40px; width:40%;"> Trụ hạt </td>
+                                                <td>{{ $xn_nts[0]->tru_hat }}</td>
                                             </tr>
                                             <tr>
-                                                <td>- Siêu âm</td>
-                                                <td></td>
-                                                <td>Người nhận hồ sơ</td>
-                                                <td></td>
+                                                <td style="height: 40px; width:40%;"> Trụ trong </td>
+                                                <td>{{ $xn_nts[0]->tru_trong}}</td>
                                             </tr>
                                             <tr>
-                                                <td>- Xét nghiệm</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="height: 40px; width:40%;"> Trụ mô </td>
+                                                <td>{{ $xn_nts[0]->tru_mo }}</td>
                                             </tr>
                                             <tr>
-                                                <td>- Khác ...</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="height: 40px; width:40%;"> TBBM Thận </td>
+                                                <td>{{ $xn_nts[0]->tbbm_than }}</td>
                                             </tr>
                                             <tr>
-                                                <td>- Toàn bộ hồ sơ</td>
-                                                <td></td>
-                                                <td>Họ tên ... </td>
-                                                <td>Họ tên ... </td>
+                                                <td> TBBM niệu đạo </td>
+                                                <td>{{ $xn_nts[0]->tbbm_nieu_dao }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> TBBM bàng quan </td>
+                                                <td>{{ $xn_nts[0]->tbbm_bang_quan}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Cặn oxalat </td>
+                                                <td>{{ $xn_nts[0]->can_oxalat }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Cặn cacbonat </td>
+                                                <td>{{ $xn_nts[0]->can_cacbonat }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Cặn sunphat </td>
+                                                <td>{{ $xn_nts[0]->can_suphat }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Cặn photphat </td>
+                                                <td>{{ $xn_nts[0]->can_photphat }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Cặn Urat </td>
+                                                <td>{{ $xn_nts[0]->can_urat }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Ngày tạo </td>
+                                                <td>{{ $xn_nts[0]->created_at }}</td>
                                             </tr>
                                         </table>
+                                        <p>Bác sĩ điều trị : <strong> {{ $xn_nts[0]->hoten_bs }}</strong></p>
+
+                                        <h4>Xét nghiệm vi sinh : </h4>
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Khoa </td>
+                                                <td>{{ $xn_vss[0]->ten_khoa }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Penicilline </td>
+                                                <td>{{ $xn_vss[0]->penicilline }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Ampicilline</td>
+                                                <td>{{ $xn_vss[0]->ampicilline }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Amo a clavulanic </td>
+                                                <td>{{ $xn_vss[0]->amo_a_clavulanic }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Aztreonam </td>
+                                                <td>{{ $xn_vss[0]->aztreonam}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Mezlociline </td>
+                                                <td>{{ $xn_vss[0]->mezlociline }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Oxacilline phe </td>
+                                                <td>{{ $xn_vss[0]->oxacilline_phe }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Oxacilline tu </td>
+                                                <td>{{ $xn_vss[0]->oxacilline_tu }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Cephalotine </td>
+                                                <td>{{ $xn_vss[0]->cephalotine}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Cefuroxime </td>
+                                                <td>{{ $xn_vss[0]->cefuroxime }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Ceftazidime </td>
+                                                <td>{{ $xn_vss[0]->ceftazidime }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Cefotaxime </td>
+                                                <td>{{ $xn_vss[0]->cefotaxime }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Ceftriaxino </td>
+                                                <td>{{ $xn_vss[0]->ceftriaxino }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Cefoperazone </td>
+                                                <td>{{ $xn_vss[0]->cefoperazone }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Cefepime </td>
+                                                <td>{{ $xn_vss[0]->cefepime }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Vancomycin </td>
+                                                <td>{{ $xn_vss[0]->vancomycin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Clindamycin </td>
+                                                <td>{{ $xn_vss[0]->clindamycin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Chloramphenicol </td>
+                                                <td>{{ $xn_vss[0]->chloramphenicol }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Erythromycine </td>
+                                                <td>{{ $xn_vss[0]->erythromycine }}</td>
+                                            </tr>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Tetracycline </td>
+                                                <td>{{ $xn_vss[0]->tetracycline }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Doxycycline </td>
+                                                <td>{{ $xn_vss[0]->doxycycline }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Nalidixic acid </td>
+                                                <td>{{ $xn_vss[0]->nalidixic_acid }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Nofloxacine </td>
+                                                <td>{{ $xn_vss[0]->nofloxacine }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Ofloxacine </td>
+                                                <td>{{ $xn_vss[0]->ofloxacine }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Ciprofloxacine </td>
+                                                <td>{{ $xn_vss[0]->ciprofloxacine }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Gentamycine </td>
+                                                <td>{{ $xn_vss[0]->gentamycine }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Tobramycine </td>
+                                                <td>{{ $xn_vss[0]->tobramycine }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Amikacine </td>
+                                                <td>{{ $xn_vss[0]->amikacine }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Netromycine </td>
+                                                <td>{{ $xn_vss[0]->netromycine }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Co_trimoxazol </td>
+                                                <td>{{ $xn_vss[0]->co_trimoxazol }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Nitroxoline </td>
+                                                <td>{{ $xn_vss[0]->nitroxoline }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Ngày tạo </td>
+                                                <td>{{ $xn_vss[0]->created_at }}</td>
+                                            </tr>
+                                        </table>
+                                        <p>Bác sĩ điều trị : <strong> {{ $xn_vss[0]->hoten_bs }}</strong></p>
+
+                                        <h4>Xét nghiệm hóa sinh máu : </h4>
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Khoa </td>
+                                                <td>{{ $xn_hsms[0]->ten_khoa }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> ure </td>
+                                                <td>{{ $xn_hsms[0]->ure }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> glucose</td>
+                                                <td>{{ $xn_hsms[0]->glucose }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> creatinin </td>
+                                                <td>{{ $xn_hsms[0]->creatinin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> acid_uric </td>
+                                                <td>{{ $xn_hsms[0]->acid_uric }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> bilirubin_tp </td>
+                                                <td>{{ $xn_hsms[0]->bilirubin_tp }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> bilirubin_tt </td>
+                                                <td>{{ $xn_hsms[0]->bilirubin_tt }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> bilirubin_gt </td>
+                                                <td>{{ $xn_hsms[0]->bilirubin_gt }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> protein_tp </td>
+                                                <td>{{ $xn_hsms[0]->protein_tp}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> albumin </td>
+                                                <td>{{ $xn_hsms[0]->albumin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> globulin </td>
+                                                <td>{{ $xn_hsms[0]->globulin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> ty_le_ag </td>
+                                                <td>{{ $xn_hsms[0]->ty_le_ag }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> fibrinogen </td>
+                                                <td>{{ $xn_hsms[0]->fibrinogen }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> cholesterol </td>
+                                                <td>{{ $xn_hsms[0]->cholesterol }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> triglycerid </td>
+                                                <td>{{ $xn_hsms[0]->triglycerid }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> hdl_cho </td>
+                                                <td>{{ $xn_hsms[0]->hdl_cho }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> natri cộng </td>
+                                                <td>{{ $xn_hsms[0]->na_cong }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> kali cộng </td>
+                                                <td>{{ $xn_hsms[0]->k_cong }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> clo trừ </td>
+                                                <td>{{ $xn_hsms[0]->cl_tru }}</td>
+                                            </tr>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> calci </td>
+                                                <td>{{ $xn_hsms[0]->calci }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> calci_ion_hoa </td>
+                                                <td>{{ $xn_hsms[0]->calci_ion_hoa }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> phospho </td>
+                                                <td>{{ $xn_hsms[0]->phospho }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> sat </td>
+                                                <td>{{ $xn_hsms[0]->sat }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> magie </td>
+                                                <td>{{ $xn_hsms[0]->magie }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> ast </td>
+                                                <td>{{ $xn_hsms[0]->ast }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> alt </td>
+                                                <td>{{ $xn_hsms[0]->alt }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> amylase </td>
+                                                <td>{{ $xn_hsms[0]->amylase }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> ck </td>
+                                                <td>{{ $xn_hsms[0]->ck }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> ck_mb </td>
+                                                <td>{{ $xn_hsms[0]->ck_mb }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> ldh </td>
+                                                <td>{{ $xn_hsms[0]->ldh }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> ggt </td>
+                                                <td>{{ $xn_hsms[0]->ggt }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> chosphatase </td>
+                                                <td>{{ $xn_hsms[0]->chosphatase }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> phoshatase_kiem </td>
+                                                <td>{{ $xn_hsms[0]->ggt }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Ngày tạo </td>
+                                                <td>{{ $xn_hsms[0]->created_at }}</td>
+                                            </tr>
+                                        </table>
+                                        <p>Bác sĩ điều trị : <strong> {{ $xn_hsms[0]->hoten_bs }}</strong></p>
+
+                                        <h4>Xét nghiệm huyết tủy đồ</h4>
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Khoa </td>
+                                                <td>{{ $xn_htds[0]->ten_khoa }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> luong_hong_cau </td>
+                                                <td>{{ $xn_htds[0]->luong_hong_cau }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> luong_huyet_sacto</td>
+                                                <td>{{ $xn_htds[0]->luong_huyet_sacto }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> hermatocrit </td>
+                                                <td>{{ $xn_htds[0]->hermatocrit }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> mcv </td>
+                                                <td>{{ $xn_htds[0]->mcv }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> mch </td>
+                                                <td>{{ $xn_htds[0]->mch }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> mchc </td>
+                                                <td>{{ $xn_htds[0]->mchc }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> hong_cau_conhan </td>
+                                                <td>{{ $xn_htds[0]->hong_cau_conhan }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> hong_cau_luoi </td>
+                                                <td>{{ $xn_htds[0]->hong_cau_luoi}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> luong_bach_cau </td>
+                                                <td>{{ $xn_htds[0]->luong_bach_cau }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> luong_tieu_cau </td>
+                                                <td>{{ $xn_htds[0]->luong_tieu_cau }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> peroxydase </td>
+                                                <td>{{ $xn_htds[0]->peroxydase }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> sudan_den </td>
+                                                <td>{{ $xn_htds[0]->sudan_den }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> esterase_khong_dachieu </td>
+                                                <td>{{ $xn_htds[0]->esterase_khong_dachieu }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> esterase_dac_hieu </td>
+                                                <td>{{ $xn_htds[0]->esterase_dac_hieu }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> pas </td>
+                                                <td>{{ $xn_htds[0]->pas }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> phosphatase_kiem_bc </td>
+                                                <td>{{ $xn_htds[0]->phosphatase_kiem_bc }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> hong_cau_nhiemsat </td>
+                                                <td>{{ $xn_htds[0]->hong_cau_nhiemsat }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 40px; width:40%;"> Ngày tạo </td>
+                                                <td>{{ $xn_htds[0]->created_at }}</td>
+                                            </tr>
+                                        </table>
+                                        <p>Bác sĩ điều trị : <strong> {{ $xn_htds[0]->hoten_bs }}</strong></p>
+
+                                        <h4>Kết quả chụp chiếu</h4>
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td>
+                                                    <center><p>Thông tin</p></center>
+                                                </td>
+                                                <td>
+                                                    <center><p>Ảnh viên</p></center>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Bác sĩ thực hiện : {{ $chup_chieus[0]->hoten_bs }}</p>
+                                                    <p>Ngày giờ yêu cầu : {{ $chup_chieus[0]->ngay_gio_yc }}</p>
+                                                    <p>Ngày giờ thực hiện : {{ $chup_chieus[0]->ngay_gio_th }}</p>
+                                                </td>
+                                                <td>
+                                                    <img src="/images/XQ/{{ $chup_chieus[0]->image }}" width="300px;">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <h3>B. TỔNG KẾT BỆNH ÁN</h3>
+                                        <p>1. Quá trình bệnh lý và diễn biến lâm sàng :</p> 
+                                        <p>{{ $benh_ans[0]->kl_lam_sang }}</p>
+                                        <p>2. Tóm tắt kết quả xét nghiệm cận lâm sàng có giá trị chẩn đoán : </p>
+                                        <p>{{ $benh_ans[0]->kl_chan_doan }}</p>
+                                        <p>3. Phương pháp điều trị</p>
+                                        <p>{{ $benh_ans[0]->pp_dieu_tri }}</p>
+                                        <p>4. Hướng điều trị và các chế độ tiếp theo</p>
+                                        <p>{{ $benh_ans[0]->huong_dieu_tri }}</p>
+                                        <p>5. Tình trạng người bệnh ra viện</p>
+                                        <p>{{ $benh_ans[0]->tinh_trang_rv }}</p>
+                                        <p>Bác sĩ kết luận : {{ $benh_ans[0]->hoten_bs }}</p>
+                                        <p>Ngày giờ tạo : {{ $benh_ans[0]->ngay_tao }}</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1224,7 +1615,7 @@
                     </div>
                 </div>
                 <!-- Ket thuc hien thi hs benh an  -->
-
+                @endif
                 <!-- Hien thi dat lich kham -->
                 <div id="Đặt lịch khám" class="tabcontent" style="display:none">
                     <div class="ex1">
@@ -1271,7 +1662,7 @@
                     </div>
                 </div>
                 <!-- Ket thuc hien thi dat lich kham -->
-
+                
                 <!-- Hiển thị yêu cầu khám -->
                 @if(Auth::user()->role == 'A')
                 <div id="Yêu cầu khám bệnh" class="tabcontent" style="display:none">
@@ -1422,20 +1813,20 @@
                     <br>
                     @foreach($likes->sortByDESC('created_at') as $like)
                         <table style="width: 100%;">
-                        <tr style="height: 30px;">
-                            <th>Tiêu đề </th>
+                        <tr>
+                            <td style="height: 40px; width:40%;">Tiêu đề </th>
                             <td>{{ $like->post['title'] }}</td>
                         </tr>
-                        <tr style="height: 30px;">
-                            <th>Thời gian</th>
+                        <tr>
+                            <td style="height: 40px; width:40%;">Thời gian</th>
                             <td>{{ $like->post['created_at'] }}</td>
                         </tr>
-                        <tr style="height: 30px;"> 
-                            <th>Người đăng</th>
+                        <tr> 
+                            <td style="height: 40px; width:40%;">Người đăng</th>
                             <td>{{ $like->post->user['name']}}</td>
                         </tr>
-                        <tr style="height: 30px;">
-                            <th><a href="#" style="color: blue;" data-toggle="modal" data-target="#myFavoritePost{{ $like->post['id']}}"><u>chi tiết</u></a></th>  
+                        <tr>
+                            <td style="height: 40px; width:40%;"><a href="#" style="color: blue;" data-toggle="modal" data-target="#myFavoritePost{{ $like->post['id']}}"><u>chi tiết</u></a></th>  
                             <td></td>
                         </tr>
                         </table>
@@ -1455,12 +1846,12 @@
                                             <div class="col-sm-8">
                                                 <center><p><strong>Bài viết</strong></p></center>
                                                 <table style="width:100%;">
-                                                <tr style="height: 100px;">
-                                                    <th>Tiếu đề : </th>
+                                                <tr>
+                                                    <td style="height: 40px; width:40%;">Tiếu đề : </th>
                                                     <td>{{ $like->post['title']}}</p>
                                                 </tr>   
                                                 <tr style="height: 100px;">
-                                                    <th>Nội dung : </th>
+                                                    <td style="height: auto; width:40%;">Nội dung : </th>
                                                     <td> {{ $like->post['content']}} </td>
                                                 </tr>
                                                 </table>
@@ -1488,53 +1879,64 @@
 
                 <!-- display favarite post -->
                 <div id="Bài viết của tôi" class="tabcontent" style="display:none">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="height: 39px; width:39%;">Tiêu đề</td>
+                            <td style="height: 39px; width:39%;">Thời gian</td>
+                            <td style="height: 39px; width:39%;">Chi tiết</td>
+                        </tr>
+                    </table>
                     <div class="ex1">
                     @foreach($posts->sortBy('created_at') as $post)
-                        <h2>Tiêu đề : {{ $post->title }}</h2>
-                        <p>Thời gian : {{ $post->created_at }}</p> 
-                        <p> <a href="#" data-toggle="modal" data-target="#myModalMyPost{{ $post->id }}" style="margin-left:90%; color: blue;"><u>chi tiết</u></a>
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="height: 40px; width:40%;">{{ $post->title }}</td>
+                            <td style="height: 40px; width:40%;">{{ $post->created_at }}</td>
+                            <td style="height: 40px; width:40%;"><a href="#" data-toggle="modal" data-target="#myModalMyPost{{ $post->id }}" style="color: blue;"><u>chi tiết</u></a></td>
+                        </tr>
+                    </table>
                     <!-- Modal bài viết của tôi -->
-                    <div class="modal fade" id="myModalMyPost{{ $post->id }}" role="dialog" style="margin-left: -350px;">
-                        <div class="modal-dialog">
-                        <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Bài viết </h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="card">
-                                        <div class="col-sm-12">                    
-                                            <div class="col-sm-8">
-                                                <center><p><strong>Bài viết</strong></p></center>
-                                                <table style="width:100%;">
-                                                <tr style="height: 100px;">
-                                                    <th>Tiếu đề : </th>
-                                                    <td>{{ $post->title }}</p>
-                                                </tr>   
-                                                <tr style="height: 100px;">
-                                                    <th>Nội dung : </th>
-                                                    <td> {{ $post->content }} </td>
-                                                </tr>
-                                                </table>
+                        <div class="modal fade" id="myModalMyPost{{ $post->id }}" role="dialog" style="margin-left: -350px;">
+                            <div class="modal-dialog">
+                            <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Bài viết </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card">
+                                            <div class="col-sm-12">                    
+                                                <div class="col-sm-8">
+                                                    <center><p><strong>Bài viết</strong></p></center>
+                                                    <table style="width:100%;">
+                                                    <tr style="height: 100px;">
+                                                        <td style="height: 40px; width:40%;">Tiếu đề : </th>
+                                                        <td>{{ $post->title }}</p>
+                                                    </tr>   
+                                                    <tr style="height: 100px;">
+                                                        <td style="height: auto; width:40%;">Nội dung : </th>
+                                                        <td> {{ $post->content }} </td>
+                                                    </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <br>
+                                                    <center><p>Ảnh đính kèm</p></center>
+                                                    <br>
+                                                    <img id="picture" src="/images/forums/{{ $post->picture }}" style="width:100%;" >
+                                                </div>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <br>
-                                                <center><p>Ảnh đính kèm</p></center>
-                                                <br>
-                                                <img id="picture" src="/images/forums/{{ $post->picture }}" style="width:100%;" >
+                                            <div class="modal-footer">
+                                                <button class="btn btn-danger" title="Xóa bài viết" id="XoaBai" value="{{ $post->id }}" onclick="deletePost(this.value);">Xóa</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-danger" title="Xóa bài viết" id="XoaBai" value="{{ $post->id }}" onclick="deletePost(this.value);">Xóa</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- end modal -->
+                        <!-- end modal -->                        
                     @endforeach
                     </div>
                 </div>
