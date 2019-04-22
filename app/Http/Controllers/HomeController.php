@@ -172,26 +172,24 @@ class HomeController extends Controller
     }
     
     public function postDatlich(Request $req)
-    {
+    {   
         if( $req->benh_vien == 'A' )
         {
             $count_a = DB::connection('mysqla')
                     ->table('requests')
-                    ->where('trang_thai', 3)
                     ->count();
-            
+            // 1 : đợi, 2 : hủy, 3 : xong
             if($count_a < 10)
                     $ma_request = "RQ00".($count_a + 1);
             else    
                 $ma_request = "RQ0".($count_a + 1);
-            
             DB::connection('mysqla')->table('requests')->insert([
                 // dd($req),
             'ma_request' => $ma_request,
             'user_id'   => Auth::user()->id,
             'ngay_thu'  => $req->ngay,
             'thoi_gian' => $req->time,
-            'trang_thai' => 3,
+            'trang_thai' => 1,
             'ma_khoa' => $req->khoa,
             'ma_chuyen_mon' => $req->chuyen_mon,
             'cach_thuc' => $req->cach_thuc
@@ -202,7 +200,6 @@ class HomeController extends Controller
         {
             $count_a = DB::connection('mysqlb')
                     ->table('requests')
-                    ->where('trang_thai', 3)
                     ->count();
             
             if($count_a < 10)
@@ -216,7 +213,7 @@ class HomeController extends Controller
             'user_id'   => Auth::user()->id,
             'ngay_thu'  => $req->ngay,
             'thoi_gian' => $req->time,
-            'trang_thai' => 3,
+            'trang_thai' => 1,
             'ma_khoa' => $req->khoa,
             'ma_chuyen_mon' => $req->chuyen_mon,
             'cach_thuc' => $req->cach_thuc

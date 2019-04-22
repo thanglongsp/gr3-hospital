@@ -56,23 +56,23 @@ class UserController extends Controller
         $requests_a = DB::connection('mysqla')->table('requests')
                 ->join('khoas', 'requests.ma_khoa', '=', 'khoas.ma_khoa')
                 ->join('chuyenmons', 'requests.ma_chuyen_mon', '=', 'chuyenmons.ma_chuyen_mon')
-                ->where([['requests.user_id', Auth::user()->id],['requests.trang_thai', 3]])
+                ->where([['requests.user_id', Auth::user()->id],['requests.trang_thai', 1]])
                 ->get();
         $requests_b = DB::connection('mysqlb')->table('requests')
                 ->join('khoas', 'requests.ma_khoa', '=', 'khoas.ma_khoa')
                 ->join('chuyenmons', 'requests.ma_chuyen_mon', '=', 'chuyenmons.ma_chuyen_mon')
-                ->where([['requests.user_id', Auth::user()->id],['requests.trang_thai', 3]])
+                ->where([['requests.user_id', Auth::user()->id],['requests.trang_thai', 1]])
                 ->get();
         $requests_a_all = DB::connection('mysqla')->table('requests')
                 ->join('khoas', 'requests.ma_khoa', '=', 'khoas.ma_khoa')
                 ->join('chuyenmons', 'requests.ma_chuyen_mon', '=', 'chuyenmons.ma_chuyen_mon')
-                ->where('requests.trang_thai', 3)
+                ->where('requests.trang_thai', 1)
                 ->get();
         // dd($requests_a_all);
         $requests_b_all = DB::connection('mysqlb')->table('requests')
                 ->join('khoas', 'requests.ma_khoa', '=', 'khoas.ma_khoa')
                 ->join('chuyenmons', 'requests.ma_chuyen_mon', '=', 'chuyenmons.ma_chuyen_mon')
-                ->where('requests.trang_thai', 3)
+                ->where('requests.trang_thai', 1)
                 ->get();
         $chuyenmons_b = DB::connection('mysqlb')->table('chuyenmons')
                 ->join('khoas', 'chuyenmons.ma_khoa', '=', 'khoas.ma_khoa')

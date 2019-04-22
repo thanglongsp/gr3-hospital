@@ -266,18 +266,14 @@
                                 <td><p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#noikhoa">chi tiết</a></p></td>
                             </tr>
                             <tr>
-                                <td style="height: 40px; width:40%;">xxx</td>
+                                <td style="height: 40px; width:40%;">2019-04-04 00:00:00</td>
                                 <td><p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#nhikhoa">chi tiết</a></p></td>
                             </tr>
                             <tr>
-                                <td style="height: 40px; width:40%;">xxx</td>
+                                <td style="height: 40px; width:40%;">2019-04-04 00:00:00</td>
                                 <td><p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#nhankhoa">chi tiết</a></p></td>
                             </tr>
                         </table>
-                     <!--    <p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#noikhoa">Nội khoa</a>
-                        <p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#nhikhoa">Nhi khoa</a>
-                        <p> <a href="#" style="margin-left:90%; color: blue;" data-toggle="modal" data-target="#nhankhoa">Nhãn khoa</a> -->
-                    <!-- Modal bệnh án nội khoa -->
                     <div class="modal fade" id="noikhoa" role="dialog" style="margin-left: -350px;">
                         <div class="modal-dialog">
                         <!-- Modal content-->
