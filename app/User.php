@@ -38,6 +38,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
 
+    public function records()
+    {
+        return $this->hasMany('App\Record');
+    }
+
     public function likes()
     {
         return $this->hasMany('App\Like');

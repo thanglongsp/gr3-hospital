@@ -1,231 +1,261 @@
-  .myDiv{
-    width:100%;
-    height:140px;
-    background:#978ea7;
+.myDiv {
+    width: 100%;
+    height: 140px;
+    background: #978ea7;
     border: 2px solid #978ea7;
     border-radius: 2%;
-  }
-  .myDivChild{
+}
+
+.myDivChild {
     text-align: center;
-    width:100%;
-    height:30px;
+    width: 100%;
+    height: 30px;
     background: #978ea7;
     border-radius: 3%;
-  }
-  .myDivResult{
+}
+
+.myDivResult {
     text-align: center;
-    width:100%;
-    height:670px;
+    width: 100%;
+    height: 670px;
     background: #978ea7;
-  }
-  .myDivResultChild{
+}
+
+.myDivResultChild {
     margin-left: 30px;
     margin-bottom: 10px;
     text-align: left;
-    width:90%;
-    height:220px;
-    background:#d6dbdf;
-  }
+    width: 90%;
+    height: 220px;
+    background: #d6dbdf;
+}
 
-  select, input {
+select, input {
     width: 100%;
-  }
-  .input {
-    width: 100%;
-   }
+}
 
-body
-{
+.input {
+    width: 100%;
+}
+
+body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.fb-profile img.fb-image-lg{
+.fb-profile img.fb-image-lg {
     z-index: 0;
-    width: 100%;  
+    width: 100%;
     margin-bottom: 10px;
 }
 
-.fb-image-profile
-{
+div.ex1 {
+    width: 100%;
+    height: 250px;
+    overflow-y: scroll;
+}
+
+div.ex3 {
+    width: 100%;
+    height: 330px;
+    overflow-y: scroll;
+}
+
+div.ex2 {
+    width: 550px;
+    height: 250px;
+    overflow-y: scroll;
+}
+
+
+.fb-image-profile {
     margin: -150px 10px 0px -100px;
     z-index: 9;
-    width: 200px; 
+    width: 200px;
     height: 200px;
-    background: #F0FFFF; 
-    border: 2px solid #1E90FF; 
+    background: #F0FFFF;
+    border: 2px solid #1E90FF;
     text-align: center;
     overflow: hidden;
-    position: relative; 
+    position: relative;
     border-radius: 50%;
 }
 
-div.ex1 {
-  width: 100%;
-  height: 300px;
-  overflow: scroll;
-}
-
 div.condition {
-  width: 100%;
-  height: 650px;
-  /*overflow: scroll;*/
+    width: 100%;
+    height: 650px;
 }
 
 .divLogin {
-  width:50%;
-  height:400px;
-  background:#d6dbdf;
-  border: 2px solid #978ea7;
-  border-radius: 2%;
-  margin-left: 25%;
+    width: 50%;
+    height: 400px;
+    background: #d6dbdf;
+    border: 2px solid #978ea7;
+    border-radius: 2%;
+    margin-left: 25%;
 }
-.divLoginChild{
-  text-align: center;
-  width:100%;
-  height:30px;
-  background: #978ea7;
-  border-radius: 3%;
+
+.divLoginChild {
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    background: #978ea7;
+    border-radius: 3%;
 }
 
 .divRegister {
-  width:60%;
-  height:400px;
-  background:#d6dbdf;
-  border: 2px solid #978ea7;
-  border-radius: 2%;
-  margin-left: 25%;
-  margin-top: 10%;
+    width: 60%;
+    height: 400px;
+    background: #d6dbdf;
+    border: 2px solid #978ea7;
+    border-radius: 2%;
+    margin-left: 25%;
+    margin-top: 10%;
 }
-.divRegisterChild{
-  text-align: center;
-  width:100%;
-  height:30px;
-  background: #978ea7;
-  border-radius: 3%;
-}	
+
+.divRegisterChild {
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    background: #978ea7;
+    border-radius: 3%;
+}
+
 .modal-dialog {
     width: 1000px;
-    background-color:#337AB7;
-  }
- 
+    background-color: #337AB7;
+}
+
 .modal-header {
     width: 1000px;
     background-color: #337AB7;
-    padding:16px 16px;
-    color:#FFF;
-    border-bottom:2px dashed #337AB7;
+    padding: 16px 16px;
+    color: #FFF;
+    border-bottom: 2px dashed #337AB7;
     text-align: center;
- }
+}
 
- .modal-content{
-   width: 1000px;
- }
+.modal-content {
+    width: 1000px;
+}
 
- .modal{
-   margin-left: -25%;
- }
+.modal {
+    margin-left: -25%;
+}
 
- .modal-dialog {
-  width: 1000px;
-  background-color:#337AB7;
+.modal-dialog {
+    width: 1000px;
+    background-color: #337AB7;
 }
 
 /* forum */
 .divForum {
-  height:720px;
-  background:#d6dbdf;
-  border: 2px solid #978ea7;
-  /* border-radius: 2%; */
+    height: 720px;
+    background: #d6dbdf;
+    border: 2px solid #978ea7;
+    /* border-radius: 2%; */
 }
-.divForumChild{
-  text-align: center;
-  height:50px;
-  background: #978ea7;
-  /* border-radius: 3%; */
+
+.divForumChild {
+    text-align: center;
+    height: 50px;
+    background: #978ea7;
+    /* border-radius: 3%; */
 }
 
 /* Post User */
 
 .content {
-  margin-top: 80px;
-  background:#978ea7;
-  height: 600px;
-  overflow: scroll;
-  /* border: 2px solid #978ea7; */
-  /* border-radius: 2%; */
+    margin-top: 80px;
+    background: #978ea7;
+    height: 600px;
+    overflow: scroll;
+    padding: 0px;
 }
 
 .divPostUser {
-  /* margin-top: 80px; */
-  background:#d6dbdf;
-  border: 2px solid #978ea7;
-  border-radius: 1%;
-}
-.divPostUserHeader{
-  text-align: center;
-  height:50px;
-  width:100%;
-  background: #978ea7;
-  border-radius: 2%;
+    /* margin-top: 80px; */
+    background: #d6dbdf;
+    border: 2px solid #978ea7;
+    border-radius: 1%;
 }
 
-.divPostUserContent{
-  text-align: left;
-  height:auto;
-  width:100%;
-  background: #d6dbdf;
-  /* border-radius: 3%; */
+.divPostUserHeader {
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    background: #978ea7;
+    border-radius: 2%;
 }
 
-.divPostUserFooter{
-  text-align: left;
-  height:auto;
-  width:100%;
-  background: #d6dbdf;
-  /* border-radius: 3%; */
+.divPostUserContent {
+    text-align: left;
+    height: auto;
+    width: 100%;
+    background: #d6dbdf;
+    /* border-radius: 3%; */
 }
 
-td,th {
-  border: 1px solid #ddd;
-  padding: 8px;
+.divPostUserFooter {
+    text-align: left;
+    height: auto;
+    width: 100%;
+    background: #d6dbdf;
+    /* border-radius: 3%; */
 }
 
-tr:nth-child(even){background-color: #f2f2f2;}
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
 
-tr:hover {background-color: #ddd;}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
 
 th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #978ea7;
-  color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #978ea7;
+    color: white;
 }
 
 /* Style the tab */
 .tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
 }
 
 /* Style the buttons inside the tab */
 .tab button {
-  background-color: inherit;
-  text-align: left;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
+    background-color: inherit;
+    text-align: left;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #ddd;
+    background-color: #ddd;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: rgb(243, 69, 69);
+    background-color: rgb(243, 69, 69);
+}
+
+.record {
+    width: 80%;
+    height: 150px;
+    background: #c1ffc9;
+    border: 2px solid #978ea7;
+    border-radius: 1%;
 }

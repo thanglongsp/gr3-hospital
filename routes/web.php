@@ -14,6 +14,10 @@
 Auth::routes();
 
 // Home
+Route::get("/", function () {
+    return redirect('/home/ALL/ALL/ALL/ALL/ALL');
+});
+
 Route::get('/home/{bv}/{khoa}/{cm}/{date}/{time}',[
     'as'=>'home',
     'uses'=>'HomeController@getHome'
@@ -51,6 +55,35 @@ Route::post('posts/delete',[
 ]);
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+Route::post('user/upload/record',[
+    'as'=>'users.uploadRecord',
+    'uses'=>'UserController@uploadRecord'
+]);
+
+// onPublic
+Route::get('/public/record/{id}',[
+    'as'=>'onPublic',
+    'uses'=>'UserController@onPublic'
+]);
+
+// offPublic
+Route::get('/offPublic/record/{id}',[
+    'as'=>'offPublic',
+    'uses'=>'UserController@offPublic'
+]);
+
+// reqShare
+Route::get('/share/{id}',[
+    'as'=>'reqShare',
+    'uses'=>'UserController@reqShare'
+]);
+
+// acceptShare
+Route::get('/accept/{id}',[
+    'as'=>'acceptShare',
+    'uses'=>'RecordController@acceptShare'
+]);
 
 // Forum
 Route::get('/forum',[
@@ -101,13 +134,21 @@ Route::get('/create/table', [
     'uses'=>'HospitalAController@table'
 ]);
 
-// Ajax
-Route::get('ajax/khoa/{idKhoa}',[
-    'as'=>'khoa.chuyenmon',
-    'uses'=>'AjaxController@getChuyenmon'
+// Transaction
+Route::get('/record',[
+    'as'=>'record',
+    'uses'=>'RecordController@getRecord'
 ]);
 
-Route::get('ajax/benhvien/{ma_khoa}',[
-    'as'=>'benhvien.khoa',
-    'uses'=>'AjaxController@getKhoa'
+
+// pdf
+Route::get('/export/record', [
+    'as'=>'export.record',
+    'uses'=>'PdfController@exportRecord'
+]);
+
+// note
+Route::post('note', [
+    'as'=>'note',
+    'uses'=>'UserController@noteRecord'
 ]);

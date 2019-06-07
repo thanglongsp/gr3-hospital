@@ -10,10 +10,12 @@ class HospitalAController extends Controller
 {
     //
     public function table(){
-        Schema::connection('mysqlb')->create('motas', function (Blueprint $table) {
+        Schema::create('reqShares', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ma_quy_trinh');
-            $table->string('mo_ta');
+            $table->string('hospitalId');
+            $table->string('userId');
+            $table->string('recordId');
+            $table->integer('status');
             $table->timestamps();
         });
     }
